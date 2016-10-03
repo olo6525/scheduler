@@ -11,7 +11,7 @@ feature < develop < release < hotfixes < master <br />
 왼쪽에서 오른쪽으로 병합되어야 한다.<br />
 
 ## 예시
-`작업 순서`
+`작업 순서`<br />
 1. `develop` 브랜치에서 새로운 `feature` 브랜치를 만든다.<br />
 2. `feature` 브랜치에서 작업을 완료 했으면 `develop` 브랜치에 병합한다.<br />
 3. 모든 기능이 완료되었으면 `release` 브랜치에 병합한다.<br />
