@@ -10,8 +10,51 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.capston.googolhkl.schduler.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+
+    <GridView
+        android:id="@+id/gridview1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:numColumns="6"
+
+
+    />
+
+    <View
+        android:id="@+id/topline"
+        android:layout_width="match_parent"
+        android:layout_height="4px"
+        android:background="#FF000000" />
+
+    <View
+        android:id="@+id/bottomline"
+        android:layout_width="match_parent"
+        android:layout_height="4px"
+        android:layout_marginTop="1435px"
+        android:background="#FF000000" />
+
+    <View
+        android:id="@+id/leftline"
+        android:layout_width="4px"
+        android:layout_height="match_parent"
+        android:background="#FF000000" />
+
+    <View
+        android:id="@+id/rightline"
+        android:layout_width="5px"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="980px"
+        android:background="#FF000000" />
+
+
+    <!--  가운데 줄 설정하는 방법
+    <View
+        android:layout_width="2dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="200px"
+        android:background="#40D20A30" />
+        -->
+
 </RelativeLayout>
