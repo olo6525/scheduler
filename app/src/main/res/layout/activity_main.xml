@@ -25,27 +25,27 @@
     <View
         android:id="@+id/topline"
         android:layout_width="match_parent"
-        android:layout_height="4px"
+        android:layout_height="2dip"
         android:background="#FF000000" />
 
     <View
         android:id="@+id/bottomline"
         android:layout_width="match_parent"
-        android:layout_height="4px"
-        android:layout_marginTop="1435px"
+        android:layout_height="2dip"
+        android:layout_marginTop="478dip"
         android:background="#FF000000" />
 
     <View
         android:id="@+id/leftline"
-        android:layout_width="4px"
+        android:layout_width="2dip"
         android:layout_height="match_parent"
         android:background="#FF000000" />
 
     <View
         android:id="@+id/rightline"
-        android:layout_width="5px"
+        android:layout_width="2dip"
         android:layout_height="match_parent"
-        android:layout_marginLeft="980px"
+        android:layout_marginLeft="326dip"
         android:background="#FF000000" />
 
 
