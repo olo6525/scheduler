@@ -6,6 +6,35 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+
+
+    <style name="box_style">
+        <item name="android:layout_width">30dp</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:background">@drawable/button1</item>
+        <item name="android:textSize">10dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:layout_gravity">center</item>
+
+    </style>
+
+    <style name="time">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textSize">10dp</item>
+        <item name="android:background">#bcf1ff</item>
+    </style>
+
+    <style name="day">
+        <item name="android:layout_width">50dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">20dp</item>
+        <item name="android:background">#e6e6e6</item>
+        <item name="android:gravity">center_horizontal</item>
     </style>
 
 </resources>

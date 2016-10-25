@@ -4,10 +4,10 @@
     <!-- 평상시 -->
     <item android:state_focused="false" android:state_pressed="false">
         <shape>
-            <solid android:color="#FFFF0000" />
-            <stroke android:color="#FF00FF00" android:width="5dp" />
-            <padding android:bottom="20dp" android:left="20dp"
-                android:right="20dp" android:top="20dp" />
+            <solid android:color="#f5d1f0" />
+            <stroke android:color="#ffffff" android:width="2dp" />
+            <padding android:bottom="5dp" android:left="5dp"
+                android:right="5dp" android:top="5dp" />
         </shape>
     </item>
 

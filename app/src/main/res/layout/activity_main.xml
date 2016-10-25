@@ -52,75 +52,47 @@ tools:context="com.capston.googolhkl.schduler.MainActivity">
 
                             <TextView
                                 android:text="시간"
-                                android:layout_width="match_parent"
+                                android:layout_width="30dp"
                                 android:layout_height="wrap_content"
                                 android:textSize="20dp"
-                                android:background="#666666"
+                                android:background="#FFE6E6E6"
                                 android:id="@+id/textView13"
                                 android:gravity="center_horizontal"
                                 android:cursorVisible="false" />
 
                             <TextView
                                 android:text="월"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:textSize="20dp"
-                                android:background="#666666"
-                                android:gravity="center_horizontal"
+                                style="@style/day"
                                 android:id="@+id/textView12" />
 
                             <TextView
                                 android:text="화"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:textSize="20dp"
-                                android:background="#666666"
-                                android:gravity="center_horizontal"
+                                style="@style/day"
                                 android:id="@+id/textView6" />
 
                             <TextView
                                 android:text="수"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:textSize="20dp"
-                                android:background="#666666"
-                                android:gravity="center_horizontal"
+                                style="@style/day"
                                 android:id="@+id/textView7" />
 
                             <TextView
                                 android:text="목"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:textSize="20dp"
-                                android:background="#666666"
-                                android:gravity="center_horizontal"
+                                style="@style/day"
                                 android:id="@+id/textView8" />
 
                             <TextView
                                 android:text="금"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:textSize="20dp"
-                                android:background="#666666"
-                                android:gravity="center_horizontal"
+                                style="@style/day"
                                 android:id="@+id/textView9" />
 
                             <TextView
                                 android:text="토"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:textSize="20dp"
-                                android:background="#666666"
-                                android:gravity="center_horizontal"
+                                style="@style/day"
                                 android:id="@+id/textView10" />
 
                             <TextView
                                 android:text="일"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:textSize="20dp"
-                                android:background="#666666"
-                                android:gravity="center_horizontal"
+                                style="@style/day"
                                 android:id="@+id/textView11" />
                         </TableRow>
 
@@ -131,58 +103,42 @@ tools:context="com.capston.googolhkl.schduler.MainActivity">
 
                             <TextView
                                 android:text="1교시\n8시~9시"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center_horizontal"
+                                style="@style/time"
                                 android:id="@+id/textView15" />
 
                             <Button
-                                android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                android:text="butto"
+                                style="@style/box_style"
                                 android:id="@+id/mon1" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/tue1" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/wed1" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/thu1" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/fri1" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/sat1" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/sun1" />
                         </TableRow>
 
@@ -193,57 +149,41 @@ tools:context="com.capston.googolhkl.schduler.MainActivity">
 
                             <TextView
                                 android:text="2교시\n9시~10시"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center_horizontal"
+                                style="@style/time"
                                 android:id="@+id/textView16" />
                             <Button
-                                android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                android:text="산학연-연구과제 캡스톤디자인"
+                                style="@style/box_style"
                                 android:id="@+id/mon2" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/tue2" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/wed2" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/thu2" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/fri2" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/sat2" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/sun2" />
                         </TableRow>
 
@@ -254,57 +194,41 @@ tools:context="com.capston.googolhkl.schduler.MainActivity">
 
                             <TextView
                                 android:text="3교시\n10시~11시"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center_horizontal"
+                                style="@style/time"
                                 android:id="@+id/textView17" />
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/mon3" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/tue3" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/wed3" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/thu3" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/fri3" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/sat3" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/sun3" />
                         </TableRow>
 
@@ -315,57 +239,41 @@ tools:context="com.capston.googolhkl.schduler.MainActivity">
 
                             <TextView
                                 android:text="4교시\n11시~12시"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center_horizontal"
+                                style="@style/time"
                                 android:id="@+id/textView18" />
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/mon4" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/tue4" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/wed4" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/thu4" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/fri4" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/sat4" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/sun4" />
                         </TableRow>
 
@@ -376,57 +284,41 @@ tools:context="com.capston.googolhkl.schduler.MainActivity">
 
                             <TextView
                                 android:text="5교시\n12시~1시"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center_horizontal"
+                                style="@style/time"
                                 android:id="@+id/textView19" />
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/mon5" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/tue5" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/wed5" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/thu5" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/fri5" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/sat5" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/sun5" />
                         </TableRow>
 
@@ -437,57 +329,41 @@ tools:context="com.capston.googolhkl.schduler.MainActivity">
 
                             <TextView
                                 android:text="6교시\n1시~2시"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center_horizontal"
+                                style="@style/time"
                                 android:id="@+id/textView20" />
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/mon6" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/tue6" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/wed6" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/thu6" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/fri6" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/sat6" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/sun6" />
                         </TableRow>
 
@@ -498,57 +374,41 @@ tools:context="com.capston.googolhkl.schduler.MainActivity">
 
                             <TextView
                                 android:text="7교시\n2시~3시"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center_horizontal"
+                                style="@style/time"
                                 android:id="@+id/textView21" />
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/mon7" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/tue7" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/wed7" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/thu7" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/fri7" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/sat7" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/sun7" />
                         </TableRow>
 
@@ -559,58 +419,42 @@ tools:context="com.capston.googolhkl.schduler.MainActivity">
 
                             <TextView
                                 android:text="8교시\n3시~4시"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center_horizontal"
+                                style="@style/time"
                                 android:id="@+id/textView22" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/mon8" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/tue8" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/wed8" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/thu8" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/fri8" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/sat8" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/sun8" />
                         </TableRow>
 
@@ -621,57 +465,41 @@ tools:context="com.capston.googolhkl.schduler.MainActivity">
 
                             <TextView
                                 android:text="9교시\n4시~5시"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center_horizontal"
+                                style="@style/time"
                                 android:id="@+id/textView23" />
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/mon9" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/tue9" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/wed9" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/thu9" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/fri9" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/sat9" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/sun9" />
                         </TableRow>
 
@@ -682,57 +510,41 @@ tools:context="com.capston.googolhkl.schduler.MainActivity">
 
                             <TextView
                                 android:text="10교시\n5시~6시"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center_horizontal"
+                                style="@style/time"
                                 android:id="@+id/textView24" />
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/mon10" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/tue10" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/wed10" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/thu10" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/fri10" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/sat10" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/sun10" />
                         </TableRow>
 
@@ -743,57 +555,41 @@ tools:context="com.capston.googolhkl.schduler.MainActivity">
 
                             <TextView
                                 android:text="11교시\n6시~7시"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center_horizontal"
+                                style="@style/time"
                                 android:id="@+id/textView26" />
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/mon11" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/tue11" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/wed11" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/thu11" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/fri11" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/sat11" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/sun11" />
                         </TableRow>
 
@@ -804,57 +600,41 @@ tools:context="com.capston.googolhkl.schduler.MainActivity">
 
                             <TextView
                                 android:text="12교시\n7시~8시"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center_horizontal"
+                                style="@style/time"
                                 android:id="@+id/textView25" />
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/mon12" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/tue12" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/wed12" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/thu12" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/fri12" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/sat12" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/sun12" />
 
                         </TableRow>
@@ -866,57 +646,41 @@ tools:context="com.capston.googolhkl.schduler.MainActivity">
 
                             <TextView
                                 android:text="13교시\n8시~9시"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center_horizontal"
+                                style="@style/time"
                                 android:id="@+id/textView28" />
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/mon13" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/tue13" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/wed13" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/thu13" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/fri13" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/sat13" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/sun13" />
 
                         </TableRow>
@@ -928,57 +692,41 @@ tools:context="com.capston.googolhkl.schduler.MainActivity">
 
                             <TextView
                                 android:text="14교시\n9시~10시"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center_horizontal"
+                                style="@style/time"
                                 android:id="@+id/textView29" />
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/mon14" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/tue14" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/wed14" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/thu14" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/fri14" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/sat14" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/sun14" />
 
                         </TableRow>
@@ -990,57 +738,41 @@ tools:context="com.capston.googolhkl.schduler.MainActivity">
 
                             <TextView
                                 android:text="15교시\n10시~11시"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center_horizontal"
+                                style="@style/time"
                                 android:id="@+id/textView30" />
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/mon15" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/tue15" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/wed15" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/thu15" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/fri15" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/sat15" />
 
                             <Button
                                 android:text="Button"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/button1"
+                                style="@style/box_style"
                                 android:id="@+id/sun15" />
 
                         </TableRow>
