@@ -63,37 +63,37 @@ tools:context="com.capston.googolhkl.schduler.MainActivity">
                             <TextView
                                 android:text="월"
                                 style="@style/day"
-                                android:id="@+id/textView12" />
+                                android:id="@+id/mon" />
 
                             <TextView
                                 android:text="화"
                                 style="@style/day"
-                                android:id="@+id/textView6" />
+                                android:id="@+id/tue" />
 
                             <TextView
                                 android:text="수"
                                 style="@style/day"
-                                android:id="@+id/textView7" />
+                                android:id="@+id/wed" />
 
                             <TextView
                                 android:text="목"
                                 style="@style/day"
-                                android:id="@+id/textView8" />
+                                android:id="@+id/thu" />
 
                             <TextView
                                 android:text="금"
                                 style="@style/day"
-                                android:id="@+id/textView9" />
+                                android:id="@+id/fri" />
 
                             <TextView
                                 android:text="토"
                                 style="@style/day"
-                                android:id="@+id/textView10" />
+                                android:id="@+id/sat" />
 
                             <TextView
                                 android:text="일"
                                 style="@style/day"
-                                android:id="@+id/textView11" />
+                                android:id="@+id/sun" />
                         </TableRow>
 
                         <!-- 1교시 과목 라인-->
@@ -104,7 +104,7 @@ tools:context="com.capston.googolhkl.schduler.MainActivity">
                             <TextView
                                 android:text="1교시\n8시~9시"
                                 style="@style/time"
-                                android:id="@+id/textView15" />
+                                android:id="@+id/clock8" />
 
                             <Button
                                 android:text="butto"
@@ -150,7 +150,7 @@ tools:context="com.capston.googolhkl.schduler.MainActivity">
                             <TextView
                                 android:text="2교시\n9시~10시"
                                 style="@style/time"
-                                android:id="@+id/textView16" />
+                                android:id="@+id/clock9" />
                             <Button
                                 android:text="산학연-연구과제 캡스톤디자인"
                                 style="@style/box_style"
@@ -195,7 +195,7 @@ tools:context="com.capston.googolhkl.schduler.MainActivity">
                             <TextView
                                 android:text="3교시\n10시~11시"
                                 style="@style/time"
-                                android:id="@+id/textView17" />
+                                android:id="@+id/clock10" />
                             <Button
                                 android:text="Button"
                                 style="@style/box_style"
@@ -240,7 +240,7 @@ tools:context="com.capston.googolhkl.schduler.MainActivity">
                             <TextView
                                 android:text="4교시\n11시~12시"
                                 style="@style/time"
-                                android:id="@+id/textView18" />
+                                android:id="@+id/clock11" />
                             <Button
                                 android:text="Button"
                                 style="@style/box_style"
@@ -285,7 +285,7 @@ tools:context="com.capston.googolhkl.schduler.MainActivity">
                             <TextView
                                 android:text="5교시\n12시~1시"
                                 style="@style/time"
-                                android:id="@+id/textView19" />
+                                android:id="@+id/clock12" />
                             <Button
                                 android:text="Button"
                                 style="@style/box_style"
@@ -330,7 +330,7 @@ tools:context="com.capston.googolhkl.schduler.MainActivity">
                             <TextView
                                 android:text="6교시\n1시~2시"
                                 style="@style/time"
-                                android:id="@+id/textView20" />
+                                android:id="@+id/clock13" />
                             <Button
                                 android:text="Button"
                                 style="@style/box_style"
@@ -375,7 +375,7 @@ tools:context="com.capston.googolhkl.schduler.MainActivity">
                             <TextView
                                 android:text="7교시\n2시~3시"
                                 style="@style/time"
-                                android:id="@+id/textView21" />
+                                android:id="@+id/clock14" />
                             <Button
                                 android:text="Button"
                                 style="@style/box_style"
@@ -420,7 +420,7 @@ tools:context="com.capston.googolhkl.schduler.MainActivity">
                             <TextView
                                 android:text="8교시\n3시~4시"
                                 style="@style/time"
-                                android:id="@+id/textView22" />
+                                android:id="@+id/clock15" />
 
                             <Button
                                 android:text="Button"
@@ -466,7 +466,7 @@ tools:context="com.capston.googolhkl.schduler.MainActivity">
                             <TextView
                                 android:text="9교시\n4시~5시"
                                 style="@style/time"
-                                android:id="@+id/textView23" />
+                                android:id="@+id/clock16" />
                             <Button
                                 android:text="Button"
                                 style="@style/box_style"
@@ -511,7 +511,7 @@ tools:context="com.capston.googolhkl.schduler.MainActivity">
                             <TextView
                                 android:text="10교시\n5시~6시"
                                 style="@style/time"
-                                android:id="@+id/textView24" />
+                                android:id="@+id/clock17" />
                             <Button
                                 android:text="Button"
                                 style="@style/box_style"
@@ -556,7 +556,7 @@ tools:context="com.capston.googolhkl.schduler.MainActivity">
                             <TextView
                                 android:text="11교시\n6시~7시"
                                 style="@style/time"
-                                android:id="@+id/textView26" />
+                                android:id="@+id/clock18" />
                             <Button
                                 android:text="Button"
                                 style="@style/box_style"
@@ -601,7 +601,7 @@ tools:context="com.capston.googolhkl.schduler.MainActivity">
                             <TextView
                                 android:text="12교시\n7시~8시"
                                 style="@style/time"
-                                android:id="@+id/textView25" />
+                                android:id="@+id/clock19" />
                             <Button
                                 android:text="Button"
                                 style="@style/box_style"
@@ -647,7 +647,7 @@ tools:context="com.capston.googolhkl.schduler.MainActivity">
                             <TextView
                                 android:text="13교시\n8시~9시"
                                 style="@style/time"
-                                android:id="@+id/textView28" />
+                                android:id="@+id/clock20" />
                             <Button
                                 android:text="Button"
                                 style="@style/box_style"
@@ -693,7 +693,7 @@ tools:context="com.capston.googolhkl.schduler.MainActivity">
                             <TextView
                                 android:text="14교시\n9시~10시"
                                 style="@style/time"
-                                android:id="@+id/textView29" />
+                                android:id="@+id/clock21" />
                             <Button
                                 android:text="Button"
                                 style="@style/box_style"
@@ -739,7 +739,7 @@ tools:context="com.capston.googolhkl.schduler.MainActivity">
                             <TextView
                                 android:text="15교시\n10시~11시"
                                 style="@style/time"
-                                android:id="@+id/textView30" />
+                                android:id="@+id/clock22" />
                             <Button
                                 android:text="Button"
                                 style="@style/box_style"

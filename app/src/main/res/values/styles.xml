@@ -22,18 +22,19 @@
     </style>
 
     <style name="time">
+        <item name="android:background">@drawable/time1</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">45dp</item>
         <item name="android:gravity">center_horizontal</item>
         <item name="android:textSize">10dp</item>
-        <item name="android:background">#bcf1ff</item>
+
     </style>
 
     <style name="day">
+        <item name="android:background">@drawable/day1</item>
         <item name="android:layout_width">50dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">20dp</item>
-        <item name="android:background">#e6e6e6</item>
         <item name="android:gravity">center_horizontal</item>
     </style>
 
