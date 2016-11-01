@@ -19,6 +19,12 @@ tools:context="com.capston.googolhkl.schduler.MainActivity">
     android:layout_alignParentLeft="true"
     android:layout_alignParentStart="true">
 
+    <TextView
+        android:text="Textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/testID"
+        />
 
 
     <ScrollView
