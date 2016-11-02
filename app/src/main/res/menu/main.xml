@@ -1,0 +1,29 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
+
+
+
+    <item
+        android:id="@+id/addSubject"
+        android:icon="@drawable/ic_addsubject"
+        android:title="과목추가"
+        app:showAsAction="never"
+        />
+
+    <item
+        android:id="@+id/SearchSubject"
+        android:icon="@drawable/ic_searchsubject2"
+        android:title="수강가능 과목찾기"
+        app:showAsAction="never"
+        />
+
+    <item
+        android:id="@+id/Maker"
+        android:icon="@drawable/ic_maker"
+        android:title="만든사람"
+        app:showAsAction="never"
+        />
+
+</menu>
+

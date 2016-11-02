@@ -1,12 +1,20 @@
 package com.capston.googolhkl.schduler;
 
 import android.support.annotation.IntegerRes;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.MenuItemHoverListener;
+import android.view.ViewConfiguration;
 import android.widget.TextView;
+
+import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -18,6 +26,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        /* 액션 오버플로우에 액션바들이 무조건 들어가게 한다. (하드웨어로 메뉴키가 있어도 강제 */
+        try {
+            ViewConfiguration config = ViewConfiguration. get( this);
+            Field menuKeyField = ViewConfiguration.class .getDeclaredField( "sHasPermanentMenuKey");
+            if (menuKeyField != null) {
+                menuKeyField.setAccessible( true );
+                menuKeyField.setBoolean(config, false );
+            }
+        } catch (Exception ex) {
+
+        }
 
         /* 시간 얻기 */
         Calendar calendar = Calendar.getInstance();
@@ -40,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         TextView testView =(TextView) findViewById(R.id.testID);
         testView.setText(Integer.toString(currentHour));
         */
+
         Integer currentHour = Integer.parseInt(strTime);
         TextView testView =(TextView) findViewById(R.id.testID);
         testView.setText(Integer.toString(currentHour));
@@ -56,6 +77,36 @@ public class MainActivity extends AppCompatActivity {
             TextView clock = (TextView) findViewById(getTimeID(strTime)); // Integer형
             clock.setBackgroundResource(R.drawable.time2);
         }
+    }
+
+    @Override
+    public boolean  onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        //ActionBar 메뉴 클릭에 대한 이벤트 처리
+        String txt = null;
+        int id = item.getItemId();
+
+        switch (id){
+            case R.id.addSubject:
+                txt = "과목추가하기";
+                break;
+
+            case R.id.SearchSubject:
+                txt = "수강가능 과목찾기";
+                break;
+
+            case R.id.Maker:
+                txt = "만든사람";
+                break;
+
+        }
+        Toast.makeText(this,txt,Toast.LENGTH_LONG).show();
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -82,6 +133,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
     }
+
+
 
     String getDayString(String str)
     {
