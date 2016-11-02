@@ -2,28 +2,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
 
-
-
     <item
-        android:id="@+id/addSubject"
-        android:icon="@drawable/ic_addsubject"
-        android:title="과목추가"
-        app:showAsAction="never"
-        />
+        android:id="@+id/main_menu"
+        android:actionViewClass="android.widget.ImageButton"
+        android:icon="@drawable/ic_action_overflow"
+        android:orderInCategory="200"
+        android:title="actionOverflow"
+        app:showAsAction="always">
+        <menu>
+            <item
+                android:id="@+id/addSubject"
+                android:icon="@drawable/ic_add_subject"
+                android:title="과목추가" />
+            <item
+                android:id="@+id/searchSubject"
+                android:icon="@drawable/ic_search_subject"
+                android:title="수강가능 과목찾기" />
+            <item
+                android:id="@+id/maker"
+                android:icon="@drawable/ic_maker_gray"
+                android:title="만든 사람" />
 
-    <item
-        android:id="@+id/SearchSubject"
-        android:icon="@drawable/ic_searchsubject2"
-        android:title="수강가능 과목찾기"
-        app:showAsAction="never"
-        />
+        </menu>
 
-    <item
-        android:id="@+id/Maker"
-        android:icon="@drawable/ic_maker"
-        android:title="만든사람"
-        app:showAsAction="never"
-        />
-
+    </item>
 </menu>
 

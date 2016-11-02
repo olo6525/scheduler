@@ -92,17 +92,23 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         switch (id){
+
+            case R.id.main_menu:
+                txt = "수강가능 과목은 현재 수강하고 있는 시간 이외 과목들을 표시합니다.";
+                break;
+
             case R.id.addSubject:
                 txt = "과목추가하기";
                 break;
 
-            case R.id.SearchSubject:
+            case R.id.searchSubject:
                 txt = "수강가능 과목찾기";
                 break;
 
-            case R.id.Maker:
+            case R.id.maker:
                 txt = "만든사람";
                 break;
+
 
         }
         Toast.makeText(this,txt,Toast.LENGTH_LONG).show();
