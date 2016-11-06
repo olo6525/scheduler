@@ -19,14 +19,6 @@ tools:context="com.capston.googolhkl.schduler.MainActivity">
     android:layout_alignParentLeft="true"
     android:layout_alignParentStart="true">
 
-    <TextView
-        android:text="Textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/testID"
-        />
-
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -113,7 +105,7 @@ tools:context="com.capston.googolhkl.schduler.MainActivity">
                                 android:id="@+id/clock8" />
 
                             <Button
-                                android:text="butto"
+                                android:text="오픈채팅"
                                 style="@style/box_style"
                                 android:id="@+id/mon1" />
 

@@ -6,26 +6,37 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.MenuItemHoverListener;
 import android.view.ViewConfiguration;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Calendar;
-import java.util.Date;
+
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
+import android.view.View;
+import android.content.Intent;
 
 import org.w3c.dom.Text;
 
 
 public class MainActivity extends AppCompatActivity {
-
+    private ArrayList<ClassInformation> ci = new ArrayList<ClassInformation>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        /* ClassInformation 정보 받아오기 (현재는 임시로 채움) */
+        ci.add(new ClassInformation("mon1 mon2 sat4", "강릉원주대학교", "Java프로그래밍", "212-212",
+                "홍길동", "N12-512", "11월 24일까지 과제", "col1"));
+
+
 
         /* 액션 오버플로우에 액션바들이 무조건 들어가게 한다. (하드웨어로 메뉴키가 있어도 강제 */
         try {
@@ -50,21 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
         // 시간 찾기
         String strTime = getHourString(strNow); // 오후 2시 : 14
-        /*
-        Object obj = R.id.clock14;
-        strNow = obj.getClass().getName();
-        TextView testView =(TextView) findViewById(R.id.testID);
-        testView.setText(strNow);
-
         Integer currentHour = Integer.parseInt(strTime);
-        TextView testView =(TextView) findViewById(R.id.testID);
-        testView.setText(Integer.toString(currentHour));
-        */
-
-        Integer currentHour = Integer.parseInt(strTime);
-        TextView testView =(TextView) findViewById(R.id.testID);
-        testView.setText(Integer.toString(currentHour));
-
 
         /* 오늘 날짜에 해당하는 요일의 테두리색을 변경 */
         TextView mon = (TextView)findViewById(getDayID(strDay)); //Integer형
@@ -72,11 +69,26 @@ public class MainActivity extends AppCompatActivity {
 
         if( currentHour >= 8 || currentHour <=22)
         {
-
             /* 현재 시간에 해당하는 시간 테두리색을 변경 */
             TextView clock = (TextView) findViewById(getTimeID(strTime)); // Integer형
             clock.setBackgroundResource(R.drawable.time2);
         }
+
+
+        /* 버튼 누르고 있을 때 */
+        findViewById(R.id.mon1).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                String txt = "과목 상세보기";
+                Toast.makeText(getApplicationContext(),txt,Toast.LENGTH_LONG).show();
+
+                Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                intentSubActivity.putExtra("data",ci);
+                startActivity(intentSubActivity);
+
+                return true;
+            }
+        }
+        );
     }
 
     @Override
@@ -108,8 +120,6 @@ public class MainActivity extends AppCompatActivity {
             case R.id.maker:
                 txt = "만든사람";
                 break;
-
-
         }
         Toast.makeText(this,txt,Toast.LENGTH_LONG).show();
         return super.onOptionsItemSelected(item);
@@ -148,7 +158,6 @@ public class MainActivity extends AppCompatActivity {
         return splitedStr[0];
     }
 
-    //TODO 요일 전부 추가하기
     Integer getDayID(String str)
     {
         if(str.equals("Mon"))
