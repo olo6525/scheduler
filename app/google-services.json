@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "977868912536",
+    "firebase_url": "https://graphical-bus-93408.firebaseio.com",
+    "project_id": "graphical-bus-93408",
+    "storage_bucket": "graphical-bus-93408.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:977868912536:android:e2e628798738d44d",
+        "android_client_info": {
+          "package_name": "com.capston.googolhkl.scheduler"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "977868912536-c56a6815c9lrj3nbvi90n3te60g389uh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGjGcrG0srSapG1mj8GzCrO0KghUNyk2s"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,18 +1,13 @@
-package com.capston.googolhkl.schduler;
+package com.capston.googolhkl.scheduler;
 
-import android.support.annotation.IntegerRes;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.MenuItemHoverListener;
 import android.view.ViewConfiguration;
 import android.widget.Button;
 import android.widget.TextView;
 
 import java.lang.reflect.Field;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Calendar;
 
 import android.view.Menu;
@@ -21,7 +16,7 @@ import android.widget.Toast;
 import android.view.View;
 import android.content.Intent;
 
-import org.w3c.dom.Text;
+import com.capston.googolhkl.schduler.R;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -78,8 +73,8 @@ public class MainActivity extends AppCompatActivity {
         /* 버튼 누르고 있을 때 */
         findViewById(R.id.mon1).setOnLongClickListener( new Button.OnLongClickListener() {
             public boolean onLongClick(View v) {
-                String txt = "과목 상세보기";
-                Toast.makeText(getApplicationContext(),txt,Toast.LENGTH_LONG).show();
+                //String txt = "과목 상세보기";
+                //Toast.makeText(getApplicationContext(),txt,Toast.LENGTH_LONG).show();
 
                 Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
                 intentSubActivity.putExtra("data",ci);

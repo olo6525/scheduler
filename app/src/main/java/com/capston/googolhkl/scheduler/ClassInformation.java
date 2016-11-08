@@ -1,4 +1,4 @@
-package com.capston.googolhkl.schduler;
+package com.capston.googolhkl.scheduler;
 
 /**
  * Created by googolhkl on 2016. 11. 6..
