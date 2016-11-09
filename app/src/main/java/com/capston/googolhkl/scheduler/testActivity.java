@@ -8,9 +8,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AlertDialog;
+import android.telephony.TelephonyManager;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -37,7 +40,7 @@ import com.google.firebase.iid.FirebaseInstanceId;
 public class testActivity extends Activity{
 
     private static final String appId = "9FBD1E10-6A0A-4D2D-B8ED-79164DA35F4D";
-    public static String sUserId="abc"; // 사용자의 MAC주소로 하는게 좋을것 같음
+    public static String sUserId="default";
     private String mNickname;
     private String key;
     private String value;
@@ -46,8 +49,6 @@ public class testActivity extends Activity{
     static private int count =0;
     private int channelMaxSize=0;
     private SendBirdOpenChannelListActivity.SendBirdChannelListFragment mSendBirdChannelListFragment;
-    private boolean isExistChatRoom = false;
-    private String channelURL;
     private enum State {DISCONNECTED, CONNECTING, CONNECTED}
 
 
@@ -55,28 +56,40 @@ public class testActivity extends Activity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
+
+        // MAC 주소 얻기
+        WifiManager mng = (WifiManager) getSystemService(WIFI_SERVICE);
+        WifiInfo info = mng.getConnectionInfo();
+        String mac = info.getMacAddress();
+
+        // 핸드폰 번호 얻기
+        TelephonyManager phone = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
+        String phoneNum = phone.getLine1Number();
+        sUserId = phoneNum;
+
+
         // 채팅을 위한 초기화
         SendBird.init(appId, this);
 
+        //과목 정보 얻기
         Intent intent = getIntent();
         ArrayList<ClassInformation> ci = (ArrayList<ClassInformation>)intent.getSerializableExtra("data");
 
-        /*
-        String txt = ci.get(0).getTime() + " " + ci.get(0).getSchoolName() + " " + ci.get(0).getClassName()
-                + " " + ci.get(0).getClassNumber() + " " + ci.get(0).getProfessor() + " " + ci.get(0).getClassRoom()
-                + " " + ci.get(0).getMemo() + " " + ci.get(0).getClassColor();
-        */
 
+        // 채팅방의 key와 value
         key = ci.get(0).getSchoolName() +":"+ ci.get(0).getClassNumber();
         value = ci.get(0).getClassName();
+
+        // 채팅방의 이름
         title = ci.get(0).getSchoolName() +" " + ci.get(0).getClassName();
-        //Toast.makeText(getApplicationContext(),"key=" + key+ " value="+value,Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(),"mac = " + mac ,Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(),"phone = " + phoneNum ,Toast.LENGTH_LONG).show();
 
 
         findViewById(R.id.testBox).setOnClickListener( new Button.OnClickListener() {
             public void onClick(View v) {
                 View view = testActivity.this.getLayoutInflater().inflate(R.layout.scheduler_nickname, null);
-                final EditText chName = (EditText) view.findViewById(R.id.nickname); // 학교이름과 과목번호로 생성하도록 수정해야함
+                final EditText chName = (EditText) view.findViewById(R.id.nickname);
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(testActivity.this);
                 builder.setTitle("오픈채팅 입장")
@@ -88,11 +101,8 @@ public class testActivity extends Activity{
                             public void onClick(final DialogInterface dialog, final int which) {
                                 count =0;
 
-                                String txt = chName.getText().toString();
-                                mNickname = txt;
+                                mNickname = chName.getText().toString();
 
-                                //Toast.makeText(getApplicationContext(),"userID =" + sUserId,Toast.LENGTH_SHORT).show();
-                                //Toast.makeText(getApplicationContext(),"닉네임 : " + mNickname,Toast.LENGTH_SHORT).show();
                                 connect();
                                 Helper.hideKeyboard(testActivity.this);
 
@@ -127,12 +137,11 @@ public class testActivity extends Activity{
                                                     String str =  map.get(key);
                                                     // 방이 있을 때 바로 입장
                                                     if(value.equals(str)) {
-                                                        isExistChatRoom = true;
-                                                        channelURL = channel.getUrl();
                                                         Intent intent = new Intent(testActivity.this, SendBirdOpenChatActivity.class);
                                                         intent.putExtra("channel_url", channel.getUrl());
                                                         startActivity(intent);
                                                     }
+                                                    // 방이 없을 때 생성하고 입장
                                                     else{
                                                         count++;
 
@@ -192,8 +201,6 @@ public class testActivity extends Activity{
                         });
                 AlertDialog dialog = builder.create();    // 알림창 객체 생성
                 dialog.show();    // 알림창 띄우기
-
-
             }
         }
         );
