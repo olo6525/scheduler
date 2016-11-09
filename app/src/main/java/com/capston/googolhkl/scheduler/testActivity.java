@@ -73,15 +73,15 @@ public class testActivity extends Activity{
 
         //과목 정보 얻기
         Intent intent = getIntent();
-        ArrayList<ClassInformation> ci = (ArrayList<ClassInformation>)intent.getSerializableExtra("data");
+        ClassInformation ci = (ClassInformation)intent.getSerializableExtra("data");
 
 
         // 채팅방의 key와 value
-        key = ci.get(0).getSchoolName() +":"+ ci.get(0).getClassNumber();
-        value = ci.get(0).getClassName();
+        key = ci.getSchoolName() +":"+ ci.getClassNumber();
+        value = ci.getClassName();
 
         // 채팅방의 이름
-        title = ci.get(0).getSchoolName() +" " + ci.get(0).getClassName();
+        title = ci.getSchoolName() +" " + ci.getClassName();
         //Toast.makeText(getApplicationContext(),"mac = " + mac ,Toast.LENGTH_LONG).show();
         //Toast.makeText(getApplicationContext(),"phone = " + phoneNum ,Toast.LENGTH_LONG).show();
 

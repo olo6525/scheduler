@@ -105,37 +105,37 @@ tools:context="com.capston.googolhkl.schduler.com.capston.googolhkl.scheduler.Ma
                                 android:id="@+id/clock8" />
 
                             <Button
-                                android:text="오픈채팅"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/mon1" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/tue1" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/wed1" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/thu1" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/fri1" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/sat1" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/sun1" />
                         </TableRow>
@@ -150,37 +150,37 @@ tools:context="com.capston.googolhkl.schduler.com.capston.googolhkl.scheduler.Ma
                                 style="@style/time"
                                 android:id="@+id/clock9" />
                             <Button
-                                android:text="산학연-연구과제 캡스톤디자인"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/mon2" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/tue2" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/wed2" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/thu2" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/fri2" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/sat2" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/sun2" />
                         </TableRow>
@@ -195,37 +195,37 @@ tools:context="com.capston.googolhkl.schduler.com.capston.googolhkl.scheduler.Ma
                                 style="@style/time"
                                 android:id="@+id/clock10" />
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/mon3" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/tue3" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/wed3" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/thu3" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/fri3" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/sat3" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/sun3" />
                         </TableRow>
@@ -240,37 +240,37 @@ tools:context="com.capston.googolhkl.schduler.com.capston.googolhkl.scheduler.Ma
                                 style="@style/time"
                                 android:id="@+id/clock11" />
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/mon4" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/tue4" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/wed4" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/thu4" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/fri4" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/sat4" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/sun4" />
                         </TableRow>
@@ -285,37 +285,37 @@ tools:context="com.capston.googolhkl.schduler.com.capston.googolhkl.scheduler.Ma
                                 style="@style/time"
                                 android:id="@+id/clock12" />
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/mon5" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/tue5" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/wed5" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/thu5" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/fri5" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/sat5" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/sun5" />
                         </TableRow>
@@ -330,37 +330,37 @@ tools:context="com.capston.googolhkl.schduler.com.capston.googolhkl.scheduler.Ma
                                 style="@style/time"
                                 android:id="@+id/clock13" />
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/mon6" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/tue6" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/wed6" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/thu6" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/fri6" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/sat6" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/sun6" />
                         </TableRow>
@@ -375,37 +375,37 @@ tools:context="com.capston.googolhkl.schduler.com.capston.googolhkl.scheduler.Ma
                                 style="@style/time"
                                 android:id="@+id/clock14" />
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/mon7" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/tue7" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/wed7" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/thu7" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/fri7" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/sat7" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/sun7" />
                         </TableRow>
@@ -421,37 +421,37 @@ tools:context="com.capston.googolhkl.schduler.com.capston.googolhkl.scheduler.Ma
                                 android:id="@+id/clock15" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/mon8" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/tue8" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/wed8" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/thu8" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/fri8" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/sat8" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/sun8" />
                         </TableRow>
@@ -466,37 +466,37 @@ tools:context="com.capston.googolhkl.schduler.com.capston.googolhkl.scheduler.Ma
                                 style="@style/time"
                                 android:id="@+id/clock16" />
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/mon9" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/tue9" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/wed9" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/thu9" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/fri9" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/sat9" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/sun9" />
                         </TableRow>
@@ -511,37 +511,37 @@ tools:context="com.capston.googolhkl.schduler.com.capston.googolhkl.scheduler.Ma
                                 style="@style/time"
                                 android:id="@+id/clock17" />
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/mon10" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/tue10" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/wed10" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/thu10" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/fri10" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/sat10" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/sun10" />
                         </TableRow>
@@ -556,37 +556,37 @@ tools:context="com.capston.googolhkl.schduler.com.capston.googolhkl.scheduler.Ma
                                 style="@style/time"
                                 android:id="@+id/clock18" />
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/mon11" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/tue11" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/wed11" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/thu11" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/fri11" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/sat11" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/sun11" />
                         </TableRow>
@@ -601,37 +601,37 @@ tools:context="com.capston.googolhkl.schduler.com.capston.googolhkl.scheduler.Ma
                                 style="@style/time"
                                 android:id="@+id/clock19" />
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/mon12" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/tue12" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/wed12" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/thu12" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/fri12" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/sat12" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/sun12" />
 
@@ -647,37 +647,37 @@ tools:context="com.capston.googolhkl.schduler.com.capston.googolhkl.scheduler.Ma
                                 style="@style/time"
                                 android:id="@+id/clock20" />
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/mon13" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/tue13" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/wed13" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/thu13" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/fri13" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/sat13" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/sun13" />
 
@@ -693,37 +693,37 @@ tools:context="com.capston.googolhkl.schduler.com.capston.googolhkl.scheduler.Ma
                                 style="@style/time"
                                 android:id="@+id/clock21" />
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/mon14" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/tue14" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/wed14" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/thu14" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/fri14" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/sat14" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/sun14" />
 
@@ -739,37 +739,37 @@ tools:context="com.capston.googolhkl.schduler.com.capston.googolhkl.scheduler.Ma
                                 style="@style/time"
                                 android:id="@+id/clock22" />
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/mon15" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/tue15" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/wed15" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/thu15" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/fri15" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/sat15" />
 
                             <Button
-                                android:text="Button"
+                                android:text=""
                                 style="@style/box_style"
                                 android:id="@+id/sun15" />
 
