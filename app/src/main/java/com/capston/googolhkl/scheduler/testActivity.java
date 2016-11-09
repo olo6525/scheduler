@@ -41,6 +41,7 @@ public class testActivity extends Activity{
     private String mNickname;
     private String key;
     private String value;
+    private String title;
     private int i=0;
     static private int count =0;
     private int channelMaxSize=0;
@@ -60,15 +61,17 @@ public class testActivity extends Activity{
         Intent intent = getIntent();
         ArrayList<ClassInformation> ci = (ArrayList<ClassInformation>)intent.getSerializableExtra("data");
 
+        /*
         String txt = ci.get(0).getTime() + " " + ci.get(0).getSchoolName() + " " + ci.get(0).getClassName()
                 + " " + ci.get(0).getClassNumber() + " " + ci.get(0).getProfessor() + " " + ci.get(0).getClassRoom()
                 + " " + ci.get(0).getMemo() + " " + ci.get(0).getClassColor();
+        */
 
         key = ci.get(0).getSchoolName() +":"+ ci.get(0).getClassNumber();
         value = ci.get(0).getClassName();
-        Toast.makeText(getApplicationContext(),"key=" + key+ " value="+value,Toast.LENGTH_LONG).show();
-        key = "hello12";
-        value = "world";
+        title = ci.get(0).getSchoolName() +" " + ci.get(0).getClassName();
+        //Toast.makeText(getApplicationContext(),"key=" + key+ " value="+value,Toast.LENGTH_LONG).show();
+
 
         findViewById(R.id.testBox).setOnClickListener( new Button.OnClickListener() {
             public void onClick(View v) {
@@ -135,7 +138,40 @@ public class testActivity extends Activity{
 
                                                         if(count==channelMaxSize){
                                                             Toast.makeText(testActivity.this, "방이없다=" + count, Toast.LENGTH_SHORT).show();
+                                                            List<User> operators = new ArrayList<>();
+                                                            operators.add(SendBird.getCurrentUser());
 
+                                                            OpenChannel.createChannel(title, null, null, operators, new OpenChannel.OpenChannelCreateHandler() {
+                                                                @Override
+                                                                public void onResult(OpenChannel openChannel, SendBirdException e) {
+                                                                    if (e != null) {
+                                                                        Toast.makeText(testActivity.this, "" + e.getCode() + ":" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                                                        return;
+                                                                    }
+                                                                    HashMap<String, String> data = new HashMap<String, String>();
+                                                                    data.put(key,value);
+                                                                    openChannel.createMetaData(data, new BaseChannel.MetaDataHandler() {
+                                                                        @Override
+                                                                        public void onResult(Map<String, String> map, SendBirdException e) {
+                                                                            if(e != null){
+                                                                                return;
+                                                                            }
+
+                                                                        }
+                                                                    });
+
+                                                                    /*
+                                                                    if (!mSendBirdChannelListFragment.mChannelListQuery.hasNext()) {
+                                                                        mSendBirdChannelListFragment.mAdapter.add(openChannel);
+                                                                    }*/
+
+
+
+                                                                    Intent intent = new Intent(testActivity.this, SendBirdOpenChatActivity.class);
+                                                                    intent.putExtra("channel_url", openChannel.getUrl());
+                                                                    startActivity(intent);
+                                                                }
+                                                            });
                                                             }
                                                     }
                                                 }
