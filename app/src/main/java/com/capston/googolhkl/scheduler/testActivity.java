@@ -22,6 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import android.widget.TextView;
 import android.widget.Toast;
 import android.view.View;
 import android.content.Intent;
@@ -75,18 +76,26 @@ public class testActivity extends Activity{
         Intent intent = getIntent();
         ClassInformation ci = (ClassInformation)intent.getSerializableExtra("data");
 
-
-        // 채팅방의 key와 value
+        // 채팅방의 key와 value (key = 학교이름:수강번호, value = 과목이름)
         key = ci.getSchoolName() +":"+ ci.getClassNumber();
         value = ci.getClassName();
 
-        // 채팅방의 이름
+        // 과목정보 업데이트
+        TextView textView = (TextView) findViewById(R.id.info_subject_show);
+        textView.setText(ci.getClassName());
+        textView = (TextView) findViewById(R.id.info_professor_show);
+        textView.setText(ci.getProfessor());
+        textView = (TextView) findViewById(R.id.info_classroom_show);
+        textView.setText(ci.getClassRoom());
+        textView = (TextView) findViewById(R.id.info_memo_show);
+        textView.setText(ci.getMemo());
+
+        // 채팅방의 이름 (학교이름 과목이름)
         title = ci.getSchoolName() +" " + ci.getClassName();
         //Toast.makeText(getApplicationContext(),"mac = " + mac ,Toast.LENGTH_LONG).show();
         //Toast.makeText(getApplicationContext(),"phone = " + phoneNum ,Toast.LENGTH_LONG).show();
 
-
-        findViewById(R.id.testBox).setOnClickListener( new Button.OnClickListener() {
+        findViewById(R.id.open_chat_btn).setOnClickListener( new Button.OnClickListener() {
             public void onClick(View v) {
                 View view = testActivity.this.getLayoutInflater().inflate(R.layout.scheduler_nickname, null);
                 final EditText chName = (EditText) view.findViewById(R.id.nickname);
