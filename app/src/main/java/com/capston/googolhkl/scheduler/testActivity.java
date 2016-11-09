@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.widget.Button;
 import android.widget.EditText;
@@ -36,11 +37,16 @@ import com.google.firebase.iid.FirebaseInstanceId;
 public class testActivity extends Activity{
 
     private static final String appId = "9FBD1E10-6A0A-4D2D-B8ED-79164DA35F4D";
-    public static String sUserId="12345"; // 사용자의 MAC주소로 하는게 좋을것 같음
+    public static String sUserId="abc"; // 사용자의 MAC주소로 하는게 좋을것 같음
     private String mNickname;
-
+    private String key;
+    private String value;
+    private int i=0;
+    static private int count =0;
+    private int channelMaxSize=0;
     private SendBirdOpenChannelListActivity.SendBirdChannelListFragment mSendBirdChannelListFragment;
-
+    private boolean isExistChatRoom = false;
+    private String channelURL;
     private enum State {DISCONNECTED, CONNECTING, CONNECTED}
 
 
@@ -57,9 +63,12 @@ public class testActivity extends Activity{
         String txt = ci.get(0).getTime() + " " + ci.get(0).getSchoolName() + " " + ci.get(0).getClassName()
                 + " " + ci.get(0).getClassNumber() + " " + ci.get(0).getProfessor() + " " + ci.get(0).getClassRoom()
                 + " " + ci.get(0).getMemo() + " " + ci.get(0).getClassColor();
-        Toast.makeText(getApplicationContext(),txt,Toast.LENGTH_LONG).show();
 
-
+        key = ci.get(0).getSchoolName() +":"+ ci.get(0).getClassNumber();
+        value = ci.get(0).getClassName();
+        Toast.makeText(getApplicationContext(),"key=" + key+ " value="+value,Toast.LENGTH_LONG).show();
+        key = "hello12";
+        value = "world";
 
         findViewById(R.id.testBox).setOnClickListener( new Button.OnClickListener() {
             public void onClick(View v) {
@@ -73,18 +82,16 @@ public class testActivity extends Activity{
                         .setView(view)
                         .setPositiveButton("입장", new DialogInterface.OnClickListener() {
                             @Override
-                            public void onClick(DialogInterface dialog, int which) {
-
+                            public void onClick(final DialogInterface dialog, final int which) {
+                                count =0;
 
                                 String txt = chName.getText().toString();
                                 mNickname = txt;
 
                                 //Toast.makeText(getApplicationContext(),"userID =" + sUserId,Toast.LENGTH_SHORT).show();
-                                Toast.makeText(getApplicationContext(),"닉네임 : " + mNickname,Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(getApplicationContext(),"닉네임 : " + mNickname,Toast.LENGTH_SHORT).show();
                                 connect();
                                 Helper.hideKeyboard(testActivity.this);
-                                Toast.makeText(getApplicationContext(),"연결했씀",Toast.LENGTH_SHORT).show();
-
 
                                 //Intent intent = new Intent(testActivity.this, SendBirdOpenChannelListActivity.class);
                                 //startActivity(intent);
@@ -93,46 +100,53 @@ public class testActivity extends Activity{
                                 OpenChannelListQuery mChannelListQuery = OpenChannel.createOpenChannelListQuery();
                                 mChannelListQuery.next(new OpenChannelListQuery.OpenChannelListQueryResultHandler() {
                                     @Override
-                                    public void onResult(List<OpenChannel> channels, SendBirdException e) {
+                                    public void onResult(final List<OpenChannel> channels, SendBirdException e) {
                                         if (e != null) {
-                                            Toast.makeText(testActivity.this, "" + e.getCode() + ":" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(testActivity.this, "다시 시도해주세요.", Toast.LENGTH_SHORT).show();
                                             return;
                                         }
 
                                         final List<String> keys = new ArrayList<String>();
-                                        keys.add("hello");
+                                        keys.add(key);
+                                        channelMaxSize = channels.size();
+                                        for( i=0; i<channels.size(); i++) {
 
-                                        for(int i=0; i<channels.size(); i++) {
                                             final OpenChannel channel = channels.get(i);
+                                            final int j = i;
+                                            //channel = channels.get(i);
                                             channels.get(i).getMetaData(keys, new BaseChannel.MetaDataHandler() {
                                                 @Override
                                                 public void onResult(Map<String, String> map, SendBirdException e) {
                                                     if (e != null) {
-                                                        Toast.makeText(testActivity.this, "error2!!", Toast.LENGTH_SHORT).show();
                                                         return;
                                                     }
 
-                                                    String str =  map.get("hello");
+                                                    String str =  map.get(key);
                                                     // 방이 있을 때 바로 입장
-                                                    if("world".equals(str)) {
+                                                    if(value.equals(str)) {
+                                                        isExistChatRoom = true;
+                                                        channelURL = channel.getUrl();
                                                         Intent intent = new Intent(testActivity.this, SendBirdOpenChatActivity.class);
                                                         intent.putExtra("channel_url", channel.getUrl());
-                                                        Toast.makeText(testActivity.this, "open!!", Toast.LENGTH_SHORT).show();
-
                                                         startActivity(intent);
                                                     }
-                                                    else{ //방이 없을 때는 만들고 입장
-                                                        Toast.makeText(testActivity.this, "close!!", Toast.LENGTH_SHORT).show();
+                                                    else{
+                                                        count++;
 
+                                                        if(count==channelMaxSize){
+                                                            Toast.makeText(testActivity.this, "방이없다=" + count, Toast.LENGTH_SHORT).show();
+
+                                                            }
                                                     }
                                                 }
                                             });
                                         }
                                     }
+
                                 });
 
-
                             }
+
                         })
                         .setNegativeButton("취소", new DialogInterface.OnClickListener() {
                             @Override
@@ -183,7 +197,7 @@ public class testActivity extends Activity{
 
                 if (FirebaseInstanceId.getInstance().getToken() == null) return;
 
-                Toast.makeText(testActivity.this, FirebaseInstanceId.getInstance().getToken(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(testActivity.this, FirebaseInstanceId.getInstance().getToken(), Toast.LENGTH_SHORT).show();
 
 
                 SendBird.registerPushTokenForCurrentUser(FirebaseInstanceId.getInstance().getToken(), new SendBird.RegisterPushTokenWithStatusHandler() {

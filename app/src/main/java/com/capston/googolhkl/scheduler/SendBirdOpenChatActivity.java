@@ -41,6 +41,7 @@ import com.sendbird.android.BaseChannel;
 import com.sendbird.android.BaseMessage;
 import com.sendbird.android.FileMessage;
 import com.sendbird.android.OpenChannel;
+import com.sendbird.android.OpenChannelListQuery;
 import com.sendbird.android.PreviousMessageListQuery;
 import com.sendbird.android.SendBird;
 import com.sendbird.android.SendBirdException;
@@ -52,6 +53,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
 
 
 public class SendBirdOpenChatActivity extends FragmentActivity {
@@ -73,6 +75,7 @@ public class SendBirdOpenChatActivity extends FragmentActivity {
             finish();
             return;
         }
+
         initFragment();
         initUIComponents();
     }

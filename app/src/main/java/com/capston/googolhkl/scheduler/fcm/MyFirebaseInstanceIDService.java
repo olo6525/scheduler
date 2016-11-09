@@ -62,7 +62,7 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
             @Override
             public void onRegistered(SendBird.PushTokenRegistrationStatus pushTokenRegistrationStatus, SendBirdException e) {
                 if (e != null) {
-                    Toast.makeText(MyFirebaseInstanceIDService.this, "" + e.getCode() + ":" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MyFirebaseInstanceIDService.this, "firebaseError!" + e.getCode() + ":" + e.getMessage(), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
