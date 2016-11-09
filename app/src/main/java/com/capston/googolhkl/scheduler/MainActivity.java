@@ -72,8 +72,11 @@ public class MainActivity extends AppCompatActivity {
         if( currentHour >= 8 || currentHour <=22)
         {
             /* 현재 시간에 해당하는 시간 테두리색을 변경 */
-            TextView clock = (TextView) findViewById(getTimeID(strTime)); // Integer형
-            clock.setBackgroundResource(R.drawable.time2);
+            Integer timeId = getTimeID(strTime);
+            if(timeId != -1) {
+                TextView clock = (TextView) findViewById(timeId); // Integer형
+                clock.setBackgroundResource(R.drawable.time2);
+            }
         }
 
 
@@ -131,6 +134,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /* tue5버튼 누르고 있을 때 */
+        findViewById(R.id.tue5).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.tue5).equals(getIdToTime(getDaysID(test[j])))){
+                            Toast.makeText(getApplicationContext(),"i=" +i+"\nname="+ci.get(i).getClassName(),Toast.LENGTH_LONG).show();
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
     }
 
     @Override
@@ -148,22 +169,21 @@ public class MainActivity extends AppCompatActivity {
         switch (id){
 
             case R.id.main_menu:
-                txt = "수강가능 과목은 현재 수강하고 있는 시간 이외 과목들을 표시합니다.";
+                //txt = "수강가능 과목은 현재 수강하고 있는 시간 이외 과목들을 표시합니다.";
                 break;
 
             case R.id.addSubject:
-                txt = "과목추가하기";
+                Toast.makeText(this,"과목추가 구현하자.(MainActivity)",Toast.LENGTH_LONG).show();
                 break;
 
             case R.id.searchSubject:
-                txt = "수강가능 과목찾기";
+                Toast.makeText(this,"수강가능 과목은 현재 수강하고 있는 시간 이외 과목들을 표시합니다.",Toast.LENGTH_LONG).show();
                 break;
 
             case R.id.maker:
-                txt = "만든사람";
+                Toast.makeText(this,"만든사람 구현하자.(MainActivity)",Toast.LENGTH_LONG).show();
                 break;
         }
-        Toast.makeText(this,txt,Toast.LENGTH_LONG).show();
         return super.onOptionsItemSelected(item);
     }
 
@@ -241,7 +261,6 @@ public class MainActivity extends AppCompatActivity {
         return hour;
     }
 
-    //TODO 시간 전부 추가하기
     Integer getTimeID(String str)
     {
         if(str.equals("8"))
@@ -305,7 +324,7 @@ public class MainActivity extends AppCompatActivity {
             return R.id.clock22;
         }
 
-        return R.id.clock8;
+        return -1;
     }
     Integer getDaysID(String str)
     {

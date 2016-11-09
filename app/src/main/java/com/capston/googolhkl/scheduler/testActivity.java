@@ -95,7 +95,28 @@ public class testActivity extends Activity{
         //Toast.makeText(getApplicationContext(),"mac = " + mac ,Toast.LENGTH_LONG).show();
         //Toast.makeText(getApplicationContext(),"phone = " + phoneNum ,Toast.LENGTH_LONG).show();
 
-        findViewById(R.id.open_chat_btn).setOnClickListener( new Button.OnClickListener() {
+        // 닫기 눌렀을 때
+        findViewById(R.id.info_close).setOnClickListener( new Button.OnClickListener() {
+         public void onClick(View v) {
+             finish();
+            }
+         });
+
+        // 삭제 눌렀을 때
+        findViewById(R.id.info_delete).setOnClickListener( new Button.OnClickListener() {
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(),"삭제 구현하자" ,Toast.LENGTH_LONG).show();
+            }
+        });
+
+        // 편집 눌렀을 때
+        findViewById(R.id.info_edit).setOnClickListener( new Button.OnClickListener() {
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(),"편집 구현하자" ,Toast.LENGTH_LONG).show();
+            }
+        });
+
+            findViewById(R.id.open_chat_btn).setOnClickListener( new Button.OnClickListener() {
             public void onClick(View v) {
                 View view = testActivity.this.getLayoutInflater().inflate(R.layout.scheduler_nickname, null);
                 final EditText chName = (EditText) view.findViewById(R.id.nickname);
