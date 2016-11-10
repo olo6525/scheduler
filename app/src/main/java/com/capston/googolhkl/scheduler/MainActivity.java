@@ -21,138 +21,15 @@ import com.capston.googolhkl.schduler.R;
 
 public class MainActivity extends AppCompatActivity {
     private ArrayList<ClassInformation> ci = new ArrayList<ClassInformation>();
-
+    private SQLiteHelper dbHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        //TODO 데이터베이스에 있는 과목 전부 받아오기(현재는 임시로 채움)
-        ci.add(new ClassInformation("mon1 mon2 sat4", "강릉원주대학교", "Java프로그래밍", "212-212",
-                "홍길동", "N12-512", "11월 24일까지 과제", "col1"));
-        ci.add(new ClassInformation("tue5 tue6 tue7", "강릉원주대학교", "고급프로그래밍", "123-456",
-                "임꺽정", "D1-102", "잼잼", "col2"));
-
-        /* 과목 시간표에 뿌리기  */
-        for(int i=0; i< ci.size(); i++) {
-            String[] test = ci.get(i).getTime().split(" ");
-            for (int j = 0; j < test.length; j++) {
-                //Toast.makeText(getApplicationContext(), "mon1ID = " + R.id.mon1 + "\nmon2ID = " + R.id.mon2 + "\nsat4ID = " + R.id.sat4 + "result = " + getDaysID(test[j]), Toast.LENGTH_LONG).show();
-                Button button = (Button) findViewById(getDaysID(test[j]));
-                button.setText(ci.get(i).getClassName());
-            }
-        }
-
-        /* 액션 오버플로우에 액션바들이 무조건 들어가게 한다. (하드웨어로 메뉴키가 있어도 강제 */
-        try {
-            ViewConfiguration config = ViewConfiguration. get( this);
-            Field menuKeyField = ViewConfiguration.class .getDeclaredField( "sHasPermanentMenuKey");
-            if (menuKeyField != null) {
-                menuKeyField.setAccessible( true );
-                menuKeyField.setBoolean(config, false );
-            }
-        } catch (Exception ex) {
-
-        }
-
-
-        /* 시간 얻기 */
-        Calendar calendar = Calendar.getInstance();
-        long Now = calendar.getTimeInMillis();
-        String strNow = calendar.getTime().toString(); //
-        // 요일 찾기
-        String strDay = getDayString(strNow); // 월요일 : Mon
-        //strNow = Integer.toString(getDayID(strNow));
-        // 시간 찾기
-        String strTime = getHourString(strNow); // 오후 2시 : 14
-        Integer currentHour = Integer.parseInt(strTime);
-        /* 오늘 날짜에 해당하는 요일의 테두리색을 변경 */
-        TextView mon = (TextView)findViewById(getDayID(strDay)); //Integer형
-        mon.setBackgroundResource(R.drawable.day2); //
-        if( currentHour >= 8 || currentHour <=22)
-        {
-            /* 현재 시간에 해당하는 시간 테두리색을 변경 */
-            Integer timeId = getTimeID(strTime);
-            if(timeId != -1) {
-                TextView clock = (TextView) findViewById(timeId); // Integer형
-                clock.setBackgroundResource(R.drawable.time2);
-            }
-        }
-
-
-        /* mon1버튼 누르고 있을 때 */
-        findViewById(R.id.mon1).setOnLongClickListener( new Button.OnLongClickListener() {
-            public boolean onLongClick(View v) {
-                for(int i=0; i< ci.size(); i++){
-                    String[] test = ci.get(i).getTime().split(" ");
-                        for (int j = 0; j < test.length; j++) {
-                            if(getIdToTime(R.id.mon1).equals(getIdToTime(getDaysID(test[j])))){
-                                Toast.makeText(getApplicationContext(),"i=" +i+"\nname="+ci.get(i).getClassName(),Toast.LENGTH_LONG).show();
-                                Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
-                                intentSubActivity.putExtra("data",ci.get(i));
-                                startActivity(intentSubActivity);
-                            }
-                        }
-                    }
-                return true;
-            }
-        });
-
-        /* mon2버튼 누르고 있을 때 */
-        findViewById(R.id.mon2).setOnLongClickListener( new Button.OnLongClickListener() {
-            public boolean onLongClick(View v) {
-                for(int i=0; i< ci.size(); i++){
-                    String[] test = ci.get(i).getTime().split(" ");
-                    for (int j = 0; j < test.length; j++) {
-                        if(getIdToTime(R.id.mon2).equals(getIdToTime(getDaysID(test[j])))){
-                            Toast.makeText(getApplicationContext(),"i=" +i+"\nname="+ci.get(i).getClassName(),Toast.LENGTH_LONG).show();
-                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
-                            intentSubActivity.putExtra("data",ci.get(i));
-                            startActivity(intentSubActivity);
-                        }
-                    }
-                }
-                return true;
-            }
-        });
-
-        /* mon3버튼 누르고 있을 때 */
-        findViewById(R.id.mon3).setOnLongClickListener( new Button.OnLongClickListener() {
-            public boolean onLongClick(View v) {
-                for(int i=0; i< ci.size(); i++){
-                    String[] test = ci.get(i).getTime().split(" ");
-                    for (int j = 0; j < test.length; j++) {
-                        if(getIdToTime(R.id.mon3).equals(getIdToTime(getDaysID(test[j])))){
-                            Toast.makeText(getApplicationContext(),"i=" +i+"\nname="+ci.get(i).getClassName(),Toast.LENGTH_LONG).show();
-                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
-                            intentSubActivity.putExtra("data",ci.get(i));
-                            startActivity(intentSubActivity);
-                        }
-                    }
-                }
-                return true;
-            }
-        });
-
-        /* tue5버튼 누르고 있을 때 */
-        findViewById(R.id.tue5).setOnLongClickListener( new Button.OnLongClickListener() {
-            public boolean onLongClick(View v) {
-                for(int i=0; i< ci.size(); i++){
-                    String[] test = ci.get(i).getTime().split(" ");
-                    for (int j = 0; j < test.length; j++) {
-                        if(getIdToTime(R.id.tue5).equals(getIdToTime(getDaysID(test[j])))){
-                            Toast.makeText(getApplicationContext(),"i=" +i+"\nname="+ci.get(i).getClassName(),Toast.LENGTH_LONG).show();
-                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
-                            intentSubActivity.putExtra("data",ci.get(i));
-                            startActivity(intentSubActivity);
-                        }
-                    }
-                }
-                return true;
-            }
-        });
+        mainStart();
 
     }
+
 
     @Override
     public boolean  onCreateOptionsMenu(Menu menu) {
@@ -174,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.addSubject:
                 Toast.makeText(this,"과목추가 구현하자.(MainActivity)",Toast.LENGTH_LONG).show();
+                Intent intentSubActivity =new Intent(MainActivity.this, dbtestActivity.class);
+                startActivity(intentSubActivity);
                 break;
 
             case R.id.searchSubject:
@@ -202,17 +81,144 @@ public class MainActivity extends AppCompatActivity {
         super.onPause();
     }
 
+
     @Override
-    protected void onResume() {
+    protected void onResume(){
         super.onResume();
+        setContentView(R.layout.activity_main);
+        mainStart();
     }
+
+
 
     @Override
     protected void onStart() {
         super.onStart();
     }
 
+    public void mainStart(){
+        ci.clear();
+        // 데이터베이스에 있는 과목 전부 받아오기
+        dbHelper = new SQLiteHelper(getApplicationContext(), "classInfo.db", null,1);
+        ArrayList<String> result = dbHelper.getResult();
 
+        for(int i=0; i< result.size(); i++){
+            ci.add(new ClassInformation(result.get(i)));
+        }
+
+        /* 과목 시간표에 뿌리기  */
+        for(int i=0; i< ci.size(); i++) {
+            String[] test = ci.get(i).getTime().split(" ");
+            for (int j = 0; j < test.length; j++) {
+                Button button = (Button) findViewById(getDaysID(test[j]));
+                button.setText(ci.get(i).getClassName());
+            }
+        }
+
+        /* 액션 오버플로우에 액션바들이 무조건 들어가게 한다. (하드웨어로 메뉴키가 있어도 강제 */
+        try {
+            ViewConfiguration config = ViewConfiguration. get( this);
+            Field menuKeyField = ViewConfiguration.class .getDeclaredField( "sHasPermanentMenuKey");
+            if (menuKeyField != null) {
+                menuKeyField.setAccessible( true );
+                menuKeyField.setBoolean(config, false );
+            }
+        } catch (Exception ex) {
+
+        }
+
+
+        /* 시간 얻기 */
+        Calendar calendar = Calendar.getInstance();
+        long Now = calendar.getTimeInMillis();
+        String strNow = calendar.getTime().toString(); //
+        // 요일 찾기
+        String strDay = getDayString(strNow); // 월요일 : Mon
+        // 시간 찾기
+        String strTime = getHourString(strNow); // 오후 2시 : 14
+        Integer currentHour = Integer.parseInt(strTime);
+        /* 오늘 날짜에 해당하는 요일의 테두리색을 변경 */
+        TextView mon = (TextView)findViewById(getDayID(strDay)); //Integer형
+        mon.setBackgroundResource(R.drawable.day2); //
+        if( currentHour >= 8 || currentHour <=22)
+        {
+            /* 현재 시간에 해당하는 시간 테두리색을 변경 */
+            Integer timeId = getTimeID(strTime);
+            if(timeId != -1) {
+                TextView clock = (TextView) findViewById(timeId); // Integer형
+                clock.setBackgroundResource(R.drawable.time2);
+            }
+        }
+
+
+        /* mon1버튼 누르고 있을 때 */
+        findViewById(R.id.mon1).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.mon1).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        /* mon2버튼 누르고 있을 때 */
+        findViewById(R.id.mon2).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.mon2).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        /* mon3버튼 누르고 있을 때 */
+        findViewById(R.id.mon3).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.mon3).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        /* tue5버튼 누르고 있을 때 */
+        findViewById(R.id.tue5).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.tue5).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+    }
 
     String getDayString(String str)
     {

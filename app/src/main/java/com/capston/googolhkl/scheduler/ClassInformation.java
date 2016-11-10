@@ -18,6 +18,17 @@ public class ClassInformation implements Serializable{
     private String classColor;
 
     public ClassInformation(){}
+    public ClassInformation(String str){
+        String[] arr = str.split(":");
+        time = arr[0];
+        schoolName = arr[1];
+        className = arr[2];
+        classNumber = arr[3];
+        professor = arr[4];
+        classRoom = arr[5];
+        memo = arr[6];
+        classColor = arr[7];
+    }
     public ClassInformation(String time, String schoolName, String className, String classNumber,
                              String professor, String classRoom, String memo, String classColor){
         this.time = time;
@@ -29,6 +40,7 @@ public class ClassInformation implements Serializable{
         this.memo = memo;
         this.classColor = classColor;
     }
+
 
 
 

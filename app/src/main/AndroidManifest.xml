@@ -21,6 +21,8 @@
         <activity android:name="com.capston.googolhkl.scheduler.SendBirdBlockedUserListActivity"></activity>
         <activity android:name="com.capston.googolhkl.scheduler.SendBirdOpenChannelListActivity"></activity>
         <activity android:name="com.capston.googolhkl.scheduler.SendBirdOpenChatActivity"></activity>
+        <activity android:name="com.capston.googolhkl.scheduler.dbtestActivity"></activity>
+        <activity android:name="com.capston.googolhkl.scheduler.classEditActivity"></activity>
 
         <service android:name="com.capston.googolhkl.scheduler.fcm.MyFirebaseMessagingService">
             <intent-filter>

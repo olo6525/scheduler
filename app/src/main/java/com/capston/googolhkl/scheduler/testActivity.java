@@ -51,12 +51,45 @@ public class testActivity extends Activity{
     private int channelMaxSize=0;
     private SendBirdOpenChannelListActivity.SendBirdChannelListFragment mSendBirdChannelListFragment;
     private enum State {DISCONNECTED, CONNECTING, CONNECTED}
+    private SQLiteHelper dbHelper;
+    private ClassInformation ci;
+    private ArrayList<ClassInformation> tempCi = new ArrayList<ClassInformation>();;
+
+
+    private Intent intent;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
+        //final SQLiteHelper dbHelper = new SQLiteHelper(getApplicationContext(), "classInfo.db", null,1);
+       mainStart();
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        setContentView(R.layout.activity_test);
+        mainStart();
+    }
+
+    public void mainStart() {
+        dbHelper = new SQLiteHelper(getApplicationContext(), "classInfo.db", null,1);
+        //과목 정보 얻기
+        intent = getIntent();
+        ci = (ClassInformation)intent.getSerializableExtra("data");
+
+        // 업데이트
+        ArrayList<String> result = dbHelper.getResult();
+        for(int i=0; i< result.size(); i++){
+            tempCi.add(new ClassInformation(result.get(i)));
+        }
+        for(int i=0; i< tempCi.size(); i++) {
+            String test = tempCi.get(i).getClassNumber();
+            if(test.equals(ci.getClassNumber()))
+                ci = tempCi.get(i);
+        }
 
         // MAC 주소 얻기
         WifiManager mng = (WifiManager) getSystemService(WIFI_SERVICE);
@@ -68,13 +101,8 @@ public class testActivity extends Activity{
         String phoneNum = phone.getLine1Number();
         sUserId = phoneNum;
 
-
         // 채팅을 위한 초기화
         SendBird.init(appId, this);
-
-        //과목 정보 얻기
-        Intent intent = getIntent();
-        ClassInformation ci = (ClassInformation)intent.getSerializableExtra("data");
 
         // 채팅방의 key와 value (key = 학교이름:수강번호, value = 과목이름)
         key = ci.getSchoolName() +":"+ ci.getClassNumber();
@@ -92,159 +120,155 @@ public class testActivity extends Activity{
 
         // 채팅방의 이름 (학교이름 과목이름)
         title = ci.getSchoolName() +" " + ci.getClassName();
-        //Toast.makeText(getApplicationContext(),"mac = " + mac ,Toast.LENGTH_LONG).show();
-        //Toast.makeText(getApplicationContext(),"phone = " + phoneNum ,Toast.LENGTH_LONG).show();
 
         // 닫기 눌렀을 때
         findViewById(R.id.info_close).setOnClickListener( new Button.OnClickListener() {
-         public void onClick(View v) {
-             finish();
+            public void onClick(View v) {
+                finish();
             }
-         });
+        });
 
         // 삭제 눌렀을 때
         findViewById(R.id.info_delete).setOnClickListener( new Button.OnClickListener() {
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"삭제 구현하자" ,Toast.LENGTH_LONG).show();
+                dbHelper = new SQLiteHelper(getApplicationContext(), "classInfo.db", null,1);
+                dbHelper.delete(ci.getClassNumber());
+                finish();
             }
         });
 
         // 편집 눌렀을 때
         findViewById(R.id.info_edit).setOnClickListener( new Button.OnClickListener() {
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"편집 구현하자" ,Toast.LENGTH_LONG).show();
+                Intent intentSubActivity =new Intent(testActivity.this, classEditActivity.class);
+                intentSubActivity.putExtra("data",ci);
+                startActivity(intentSubActivity);
             }
         });
 
-            findViewById(R.id.open_chat_btn).setOnClickListener( new Button.OnClickListener() {
-            public void onClick(View v) {
-                View view = testActivity.this.getLayoutInflater().inflate(R.layout.scheduler_nickname, null);
-                final EditText chName = (EditText) view.findViewById(R.id.nickname);
+        findViewById(R.id.open_chat_btn).setOnClickListener( new Button.OnClickListener() {
+             public void onClick(View v) {
+                 View view = testActivity.this.getLayoutInflater().inflate(R.layout.scheduler_nickname, null);
+                 final EditText chName = (EditText) view.findViewById(R.id.nickname);
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(testActivity.this);
-                builder.setTitle("오픈채팅 입장")
-                        .setMessage("채팅방에서 사용할 닉네임을 입력해주세요")
-                        .setCancelable(false)
-                        .setView(view)
-                        .setPositiveButton("입장", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(final DialogInterface dialog, final int which) {
-                                count =0;
+                 AlertDialog.Builder builder = new AlertDialog.Builder(testActivity.this);
+                 builder.setTitle("오픈채팅 입장")
+                         .setMessage("채팅방에서 사용할 닉네임을 입력해주세요")
+                         .setCancelable(false)
+                         .setView(view)
+                         .setPositiveButton("입장", new DialogInterface.OnClickListener() {
+                             @Override
+                             public void onClick(final DialogInterface dialog, final int which) {
+                                 count =0;
 
-                                mNickname = chName.getText().toString();
+                                 mNickname = chName.getText().toString();
 
-                                connect();
-                                Helper.hideKeyboard(testActivity.this);
+                                 connect();
+                                 Helper.hideKeyboard(testActivity.this);
 
-                                //Intent intent = new Intent(testActivity.this, SendBirdOpenChannelListActivity.class);
-                                //startActivity(intent);
-                                //finish();
+                                 //Intent intent = new Intent(testActivity.this, SendBirdOpenChannelListActivity.class);
+                                 //startActivity(intent);
+                                 //finish();
 
-                                OpenChannelListQuery mChannelListQuery = OpenChannel.createOpenChannelListQuery();
-                                mChannelListQuery.next(new OpenChannelListQuery.OpenChannelListQueryResultHandler() {
-                                    @Override
-                                    public void onResult(final List<OpenChannel> channels, SendBirdException e) {
-                                        if (e != null) {
-                                            Toast.makeText(testActivity.this, "다시 시도해주세요.", Toast.LENGTH_SHORT).show();
-                                            return;
-                                        }
+                                 OpenChannelListQuery mChannelListQuery = OpenChannel.createOpenChannelListQuery();
+                                 mChannelListQuery.next(new OpenChannelListQuery.OpenChannelListQueryResultHandler() {
+                                     @Override
+                                     public void onResult(final List<OpenChannel> channels, SendBirdException e) {
+                                         if (e != null) {
+                                             Toast.makeText(testActivity.this, "다시 시도해주세요.", Toast.LENGTH_SHORT).show();
+                                             return;
+                                         }
 
-                                        final List<String> keys = new ArrayList<String>();
-                                        keys.add(key);
-                                        channelMaxSize = channels.size();
-                                        for( i=0; i<channels.size(); i++) {
+                                         final List<String> keys = new ArrayList<String>();
+                                         keys.add(key);
+                                         channelMaxSize = channels.size();
+                                         for( i=0; i<channels.size(); i++) {
 
-                                            final OpenChannel channel = channels.get(i);
-                                            final int j = i;
-                                            //channel = channels.get(i);
-                                            channels.get(i).getMetaData(keys, new BaseChannel.MetaDataHandler() {
-                                                @Override
-                                                public void onResult(Map<String, String> map, SendBirdException e) {
-                                                    if (e != null) {
-                                                        return;
-                                                    }
+                                             final OpenChannel channel = channels.get(i);
+                                             final int j = i;
+                                             //channel = channels.get(i);
+                                             channels.get(i).getMetaData(keys, new BaseChannel.MetaDataHandler() {
+                                                 @Override
+                                                 public void onResult(Map<String, String> map, SendBirdException e) {
+                                                     if (e != null) {
+                                                         return;
+                                                     }
 
-                                                    String str =  map.get(key);
-                                                    // 방이 있을 때 바로 입장
-                                                    if(value.equals(str)) {
-                                                        Intent intent = new Intent(testActivity.this, SendBirdOpenChatActivity.class);
-                                                        intent.putExtra("channel_url", channel.getUrl());
-                                                        startActivity(intent);
-                                                    }
-                                                    // 방이 없을 때 생성하고 입장
-                                                    else{
-                                                        count++;
+                                                     String str =  map.get(key);
+                                                     // 방이 있을 때 바로 입장
+                                                     if(value.equals(str)) {
+                                                         Intent intent = new Intent(testActivity.this, SendBirdOpenChatActivity.class);
+                                                         intent.putExtra("channel_url", channel.getUrl());
+                                                         startActivity(intent);
+                                                     }
+                                                     // 방이 없을 때 생성하고 입장
+                                                     else{
+                                                         count++;
 
-                                                        if(count==channelMaxSize){
-                                                            Toast.makeText(testActivity.this, "방이없다=" + count, Toast.LENGTH_SHORT).show();
-                                                            List<User> operators = new ArrayList<>();
-                                                            operators.add(SendBird.getCurrentUser());
+                                                         if(count==channelMaxSize){
+                                                             List<User> operators = new ArrayList<>();
+                                                             operators.add(SendBird.getCurrentUser());
 
-                                                            OpenChannel.createChannel(title, null, null, operators, new OpenChannel.OpenChannelCreateHandler() {
-                                                                @Override
-                                                                public void onResult(OpenChannel openChannel, SendBirdException e) {
-                                                                    if (e != null) {
-                                                                        Toast.makeText(testActivity.this, "" + e.getCode() + ":" + e.getMessage(), Toast.LENGTH_SHORT).show();
-                                                                        return;
-                                                                    }
-                                                                    HashMap<String, String> data = new HashMap<String, String>();
-                                                                    data.put(key,value);
-                                                                    openChannel.createMetaData(data, new BaseChannel.MetaDataHandler() {
-                                                                        @Override
-                                                                        public void onResult(Map<String, String> map, SendBirdException e) {
-                                                                            if(e != null){
-                                                                                return;
-                                                                            }
+                                                             OpenChannel.createChannel(title, null, null, operators, new OpenChannel.OpenChannelCreateHandler() {
+                                                                 @Override
+                                                                 public void onResult(OpenChannel openChannel, SendBirdException e) {
+                                                                     if (e != null) {
+                                                                         return;
+                                                                     }
+                                                                     HashMap<String, String> data = new HashMap<String, String>();
+                                                                     data.put(key,value);
+                                                                     openChannel.createMetaData(data, new BaseChannel.MetaDataHandler() {
+                                                                         @Override
+                                                                         public void onResult(Map<String, String> map, SendBirdException e) {
+                                                                             if(e != null){
+                                                                                 return;
+                                                                             }
 
-                                                                        }
-                                                                    });
+                                                                         }
+                                                                     });
 
-                                                                    /*
-                                                                    if (!mSendBirdChannelListFragment.mChannelListQuery.hasNext()) {
-                                                                        mSendBirdChannelListFragment.mAdapter.add(openChannel);
-                                                                    }*/
+                /*
+                if (!mSendBirdChannelListFragment.mChannelListQuery.hasNext()) {
+                    mSendBirdChannelListFragment.mAdapter.add(openChannel);
+                }*/
 
 
 
-                                                                    Intent intent = new Intent(testActivity.this, SendBirdOpenChatActivity.class);
-                                                                    intent.putExtra("channel_url", openChannel.getUrl());
-                                                                    startActivity(intent);
-                                                                }
-                                                            });
-                                                            }
-                                                    }
-                                                }
-                                            });
-                                        }
-                                    }
+                                                                     Intent intent = new Intent(testActivity.this, SendBirdOpenChatActivity.class);
+                                                                     intent.putExtra("channel_url", openChannel.getUrl());
+                                                                     startActivity(intent);
+                                                                 }
+                                                             });
+                                                         }
+                                                     }
+                                                 }
+                                             });
+                                         }
+                                     }
 
-                                });
+                                 });
 
-                            }
+                             }
 
-                        })
-                        .setNegativeButton("취소", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
+                         })
+                         .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                             @Override
+                             public void onClick(DialogInterface dialog, int which) {
 
-                            }
-                        });
-                AlertDialog dialog = builder.create();    // 알림창 객체 생성
-                dialog.show();    // 알림창 띄우기
-            }
-        }
-        );
-
+                             }
+                         });
+                 AlertDialog dialog = builder.create();    // 알림창 객체 생성
+                 dialog.show();    // 알림창 띄우기
+             }
+         });
     }
 
-    private void connect() {
+        private void connect() {
         SendBird.connect(sUserId, new SendBird.ConnectHandler() {
             @Override
             public void onConnected(User user, SendBirdException e) {
 
                 if (e != null) {
-                    //Toast.makeText(testActivity.this, "" + e.getCode() + ":" + e.getMessage(), Toast.LENGTH_SHORT).show();
-                    //setState(State.DISCONNECTED);
                     return;
                 }
 
@@ -254,8 +278,6 @@ public class testActivity extends Activity{
                     @Override
                     public void onUpdated(SendBirdException e) {
                         if (e != null) {
-                            //Toast.makeText(testActivity.this, "" + e.getCode() + ":" + e.getMessage(), Toast.LENGTH_SHORT).show();
-                           // setState(State.DISCONNECTED);
                             return;
                         }
 
@@ -263,21 +285,15 @@ public class testActivity extends Activity{
                         editor.putString("user_id", sUserId);
                         editor.putString("nickname", mNickname);
                         editor.commit();
-                        //Toast.makeText(testActivity.this, "" + e.getCode() + ":" + e.getMessage(), Toast.LENGTH_SHORT).show();
-                        //setState(State.CONNECTED);
                     }
                 });
 
                 if (FirebaseInstanceId.getInstance().getToken() == null) return;
 
-                //Toast.makeText(testActivity.this, FirebaseInstanceId.getInstance().getToken(), Toast.LENGTH_SHORT).show();
-
-
                 SendBird.registerPushTokenForCurrentUser(FirebaseInstanceId.getInstance().getToken(), new SendBird.RegisterPushTokenWithStatusHandler() {
                     @Override
                     public void onRegistered(SendBird.PushTokenRegistrationStatus pushTokenRegistrationStatus, SendBirdException e) {
                         if (e != null) {
-                            //Toast.makeText(testActivity.this, "" + e.getCode() + ":" + e.getMessage(), Toast.LENGTH_SHORT).show();
                             return;
                         }
                     }
@@ -285,8 +301,5 @@ public class testActivity extends Activity{
 
             }
         });
-
-        //setState(State.CONNECTING);
     }
-
 }
