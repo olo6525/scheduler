@@ -37,16 +37,13 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         String query = "INSERT INTO CLASSINFO VALUES('" + classTime + "', '" + schoolName + "', '" + className + "', '" + classNumber + "', '" +  professor + "', '" + classRoom + "', '" + memo + "', '" + classColor +"');";
         db.execSQL(query);
-        Log.d("STATE",query);
         db.close();
     }
 
     public void update(String classTime, String schoolName, String className, String classNumber, String professor, String classRoom, String memo, String classColor) {
         SQLiteDatabase db = getWritableDatabase();
         String query = "UPDATE CLASSINFO SET classTime=" + "'"+classTime+"', " + "schoolName=" + "'"+schoolName+"', "+ "className=" + "'"+className+"', " + "professor=" + "'"+professor+"', " + "classRoom=" + "'"+classRoom+"', " + "memo=" + "'"+memo+"', " + "classColor=" + "'"+classColor+"' " + " WHERE classNumber='" + classNumber + "';";
-
         db.execSQL(query);
-        Log.d("STATE",query);
         db.close();
     }
 
@@ -54,7 +51,6 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         String query = "DELETE FROM CLASSINFO WHERE classNumber='" + classNumber + "';";
         db.execSQL(query);
-        Log.d("STATE",query);
         db.close();
     }
 
@@ -75,11 +71,6 @@ public class SQLiteHelper extends SQLiteOpenHelper {
                     + cursor.getString(6) + ":"
                     + cursor.getString(7));
         }
-
-        for(int i=0; i<result.size(); i++) {
-            Log.d("STATE", result.get(i).toString());
-        }
-
         return result;
     }
 }

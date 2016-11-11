@@ -38,6 +38,7 @@ import com.sendbird.android.User;
 import com.google.firebase.iid.FirebaseInstanceId;
 
 
+// 시간표 꾹 누를 때
 public class testActivity extends Activity{
 
     private static final String appId = "9FBD1E10-6A0A-4D2D-B8ED-79164DA35F4D";
@@ -49,8 +50,6 @@ public class testActivity extends Activity{
     private int i=0;
     static private int count =0;
     private int channelMaxSize=0;
-    private SendBirdOpenChannelListActivity.SendBirdChannelListFragment mSendBirdChannelListFragment;
-    private enum State {DISCONNECTED, CONNECTING, CONNECTED}
     private SQLiteHelper dbHelper;
     private ClassInformation ci;
     private ArrayList<ClassInformation> tempCi = new ArrayList<ClassInformation>();;
@@ -63,7 +62,6 @@ public class testActivity extends Activity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
-        //final SQLiteHelper dbHelper = new SQLiteHelper(getApplicationContext(), "classInfo.db", null,1);
        mainStart();
     }
 
@@ -166,10 +164,6 @@ public class testActivity extends Activity{
                                  connect();
                                  Helper.hideKeyboard(testActivity.this);
 
-                                 //Intent intent = new Intent(testActivity.this, SendBirdOpenChannelListActivity.class);
-                                 //startActivity(intent);
-                                 //finish();
-
                                  OpenChannelListQuery mChannelListQuery = OpenChannel.createOpenChannelListQuery();
                                  mChannelListQuery.next(new OpenChannelListQuery.OpenChannelListQueryResultHandler() {
                                      @Override
@@ -226,13 +220,6 @@ public class testActivity extends Activity{
 
                                                                          }
                                                                      });
-
-                /*
-                if (!mSendBirdChannelListFragment.mChannelListQuery.hasNext()) {
-                    mSendBirdChannelListFragment.mAdapter.add(openChannel);
-                }*/
-
-
 
                                                                      Intent intent = new Intent(testActivity.this, SendBirdOpenChatActivity.class);
                                                                      intent.putExtra("channel_url", openChannel.getUrl());
@@ -298,7 +285,6 @@ public class testActivity extends Activity{
                         }
                     }
                 });
-
             }
         });
     }

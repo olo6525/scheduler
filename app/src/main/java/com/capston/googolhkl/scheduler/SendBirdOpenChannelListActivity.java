@@ -197,41 +197,6 @@ public class SendBirdOpenChannelListActivity extends FragmentActivity {
                         .setPositiveButton("생성", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                /*
-                                List<User> operators = new ArrayList<>();
-                                operators.add(SendBird.getCurrentUser());
-
-                                OpenChannel.createChannel(chName.getText().toString(), null, null, operators, new OpenChannel.OpenChannelCreateHandler() {
-                                    @Override
-                                    public void onResult(OpenChannel openChannel, SendBirdException e) {
-                                        if (e != null) {
-                                            Toast.makeText(SendBirdOpenChannelListActivity.this, "" + e.getCode() + ":" + e.getMessage(), Toast.LENGTH_SHORT).show();
-                                            return;
-                                        }
-                                        HashMap<String, String> data = new HashMap<String, String>();
-                                        data.put("hello","world");
-                                        openChannel.createMetaData(data, new BaseChannel.MetaDataHandler() {
-                                            @Override
-                                            public void onResult(Map<String, String> map, SendBirdException e) {
-                                                if(e != null){
-                                                    return;
-                                                }
-
-                                            }
-                                        });
-
-                                        if (!mSendBirdChannelListFragment.mChannelListQuery.hasNext()) {
-                                            mSendBirdChannelListFragment.mAdapter.add(openChannel);
-                                        }
-
-
-
-                                        Intent intent = new Intent(SendBirdOpenChannelListActivity.this, SendBirdOpenChatActivity.class);
-                                        intent.putExtra("channel_url", openChannel.getUrl());
-                                        startActivity(intent);
-                                    }
-                                });
-                                */
                                 OpenChannelListQuery mChannelListQuery = OpenChannel.createOpenChannelListQuery();
                                 mChannelListQuery.next(new OpenChannelListQuery.OpenChannelListQueryResultHandler() {
                                     @Override
@@ -278,9 +243,7 @@ public class SendBirdOpenChannelListActivity extends FragmentActivity {
                 mSettingsContainer.setVisibility(View.GONE);
             }
         });
-
         resizeMenubar();
-
     }
 
 

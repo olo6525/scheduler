@@ -1,7 +1,5 @@
 package com.capston.googolhkl.scheduler;
 
-import android.content.DialogInterface;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,9 +11,6 @@ import android.widget.TextView;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,21 +19,13 @@ import android.view.View;
 import android.content.Intent;
 
 import com.capston.googolhkl.schduler.R;
-import com.sendbird.android.BaseChannel;
-import com.sendbird.android.OpenChannel;
-import com.sendbird.android.OpenChannelListQuery;
-import com.sendbird.android.SendBird;
-import com.sendbird.android.SendBirdException;
-import com.sendbird.android.User;
 
-
+// 처음켰을 때
 public class MainActivity extends AppCompatActivity {
     private ArrayList<ClassInformation> ci = new ArrayList<ClassInformation>();
     private SQLiteHelper dbHelper;
     private String schoolName = "";
-    private EditText schoolNameEdit;
     int[] id = {R.id.addmon1, R.id.addmon2, R.id.addmon3, R.id.addmon4, R.id.addmon5, R.id.addmon6, R.id.addmon7};
-    int i=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
         mainStart();
 
     }
-
 
     @Override
     public boolean  onCreateOptionsMenu(Menu menu) {
@@ -57,30 +43,25 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         //ActionBar 메뉴 클릭에 대한 이벤트 처리
-        String txt = null;
         int id = item.getItemId();
 
         switch (id){
 
             case R.id.main_menu:
-                //txt = "수강가능 과목은 현재 수강하고 있는 시간 이외 과목들을 표시합니다.";
                 break;
 
             case R.id.addSubject:
-                Toast.makeText(this,"과목추가 구현하자.(MainActivity)",Toast.LENGTH_LONG).show();
-                //Intent intentSubActivity =new Intent(MainActivity.this, dbtestActivity.class);
-                //startActivity(intentSubActivity);
                 Intent intentSubActivity =new Intent(MainActivity.this, AddMainActivity.class);
                 intentSubActivity.putExtra("data",ci);
                 startActivity(intentSubActivity);
                 break;
 
             case R.id.searchSubject:
-                Toast.makeText(this,"수강가능 과목은 현재 수강하고 있는 시간 이외 과목들을 표시합니다.",Toast.LENGTH_LONG).show();
+                Toast.makeText(this,"서비스 준비 중 입니다",Toast.LENGTH_LONG).show();
                 break;
 
             case R.id.maker:
-                Toast.makeText(this,"만든사람 구현하자.(MainActivity)",Toast.LENGTH_LONG).show();
+                Toast.makeText(this,"서비스 준비 중 입니다",Toast.LENGTH_LONG).show();
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -117,8 +98,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void mainStart(){
-        Toast.makeText(this,"schooname=" + schoolName,Toast.LENGTH_LONG).show();
-
         ci.clear();
         // 데이터베이스에 있는 과목 전부 받아오기
         dbHelper = new SQLiteHelper(getApplicationContext(), "classInfo.db", null,1);
@@ -127,38 +106,6 @@ public class MainActivity extends AppCompatActivity {
         for(int i=0; i< result.size(); i++){
             ci.add(new ClassInformation(result.get(i)));
         }
-/*
-       // if(ci.isEmpty() == true) {
-        if(schoolName.equals("")) {
-
-                    View view = MainActivity.this.getLayoutInflater().inflate(R.layout.scheduler_nickname, null);
-                    schoolNameEdit = (EditText) view.findViewById(R.id.nickname);
-
-                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                    builder.setTitle("학교이름 등록")
-                            .setMessage("학교이름을 정확히 입력해주세요\nEx) 홍익대학교(o) 홍익대(x) 홍대(x)")
-                            .setCancelable(false)
-                            .setView(view)
-                            .setPositiveButton("등록", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(final DialogInterface dialog, final int which) {
-                                    schoolName = schoolNameEdit.getText().toString();
-                                }
-                            })
-                            .setNegativeButton("취소", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-
-                                }
-                            });
-                    AlertDialog dialog = builder.create();    // 알림창 객체 생성
-                    dialog.show();    // 알림창 띄우기
-        }
-        */
-
-        //Log.d("STATE",ci.get(0).getSchoolName());
-
-
 
         /* 과목 시간표에 뿌리기  */
         for(int i=0; i< ci.size(); i++) {
@@ -166,6 +113,8 @@ public class MainActivity extends AppCompatActivity {
             for (int j = 0; j < test.length; j++) {
                 Button button = (Button) findViewById(getDaysID(test[j]));
                 button.setText(ci.get(i).getClassName());
+                Log.d("STATE is = ", ci.get(i).getClassColor() + " !!" + getButtonColor(ci.get(i).getClassColor()) + ci.get(i).getClassName());
+                button.setBackgroundResource(getButtonColorDrawable(ci.get(i).getClassColor()));
             }
         }
 
@@ -205,6 +154,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
+
         findViewById(R.id.mon1).setOnLongClickListener( new Button.OnLongClickListener() {
             public boolean onLongClick(View v) {
                 for(int i=0; i< ci.size(); i++){
@@ -220,7 +170,6 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-
 
         findViewById(R.id.mon2).setOnLongClickListener( new Button.OnLongClickListener() {
             public boolean onLongClick(View v) {
@@ -254,13 +203,1628 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        /* tue5버튼 누르고 있을 때 */
+        findViewById(R.id.mon4).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.mon4).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.mon5).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.mon5).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.mon6).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.mon6).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.mon7).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.mon7).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.mon8).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.mon8).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.mon9).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.mon9).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.mon10).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.mon10).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.mon11).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.mon11).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.mon12).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.mon12).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.mon13).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.mon13).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.mon14).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.mon14).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.mon15).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.mon15).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.tue1).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.tue1).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.tue2).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.tue2).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.tue3).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.tue3).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.tue4).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.tue4).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
         findViewById(R.id.tue5).setOnLongClickListener( new Button.OnLongClickListener() {
             public boolean onLongClick(View v) {
                 for(int i=0; i< ci.size(); i++){
                     String[] test = ci.get(i).getTime().split(" ");
                     for (int j = 0; j < test.length; j++) {
                         if(getIdToTime(R.id.tue5).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.tue6).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.tue6).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.tue7).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.tue7).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.tue8).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.tue8).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.tue9).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.tue9).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.tue10).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.tue10).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.tue11).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.tue11).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.tue12).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.tue12).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.tue13).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.tue13).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.tue14).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.tue14).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.tue15).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.tue15).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.wed1).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.wed1).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.wed2).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.wed2).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.wed3).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.wed3).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.wed4).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.wed4).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.wed5).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.wed5).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.wed6).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.wed6).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.wed7).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.wed7).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.wed8).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.wed8).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.wed9).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.wed9).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.wed10).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.wed10).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.wed11).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.wed11).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.wed12).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.wed12).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.wed13).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.wed13).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.wed14).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.wed14).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.wed15).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.wed15).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.thu1).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.thu1).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.thu2).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.thu2).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.thu3).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.thu3).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.thu4).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.thu4).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.thu5).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.thu5).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.thu6).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.thu6).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.thu7).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.thu7).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.thu8).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.thu8).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.thu9).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.thu9).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.thu10).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.thu10).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.thu11).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.thu11).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.thu12).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.thu12).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.thu13).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.thu13).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.thu14).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.thu14).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.thu15).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.thu15).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.fri1).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.fri1).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.fri2).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.fri2).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.fri3).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.fri3).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.fri4).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.fri4).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.fri5).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.fri5).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.fri6).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.fri6).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.fri7).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.fri7).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.fri8).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.fri8).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.fri9).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.fri9).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.fri10).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.fri10).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.fri11).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.fri11).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.fri12).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.fri12).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.fri13).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.fri13).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.fri14).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.fri14).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.fri15).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.fri15).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.sat1).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.sat1).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.sat2).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.sat2).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.sat3).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.sat3).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.sat4).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.sat4).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.sat5).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.sat5).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.sat6).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.sat6).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.sat7).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.sat7).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.sat8).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.sat8).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.sat9).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.sat9).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.sat10).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.sat10).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.sat11).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.sat11).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.sat12).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.sat12).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.sat13).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.sat13).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.sat14).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.sat14).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.sat15).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.sat15).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.sun1).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.sun1).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.sun2).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.sun2).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.sun3).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.sun3).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.sun4).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.sun4).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.sun5).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.sun5).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.sun6).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.sun6).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.sun7).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.sun7).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.sun8).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.sun8).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.sun9).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.sun9).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.sun10).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.sun10).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.sun11).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.sun11).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.sun12).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.sun12).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.sun13).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.sun13).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.sun14).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.sun14).equals(getIdToTime(getDaysID(test[j])))){
+                            Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
+                            intentSubActivity.putExtra("data",ci.get(i));
+                            startActivity(intentSubActivity);
+                        }
+                    }
+                }
+                return true;
+            }
+        });
+
+        findViewById(R.id.sun15).setOnLongClickListener( new Button.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                for(int i=0; i< ci.size(); i++){
+                    String[] test = ci.get(i).getTime().split(" ");
+                    for (int j = 0; j < test.length; j++) {
+                        if(getIdToTime(R.id.sun15).equals(getIdToTime(getDaysID(test[j])))){
                             Intent intentSubActivity =new Intent(MainActivity.this, testActivity.class);
                             intentSubActivity.putExtra("data",ci.get(i));
                             startActivity(intentSubActivity);
@@ -816,5 +2380,54 @@ public class MainActivity extends AppCompatActivity {
             return "sun15";
     }
 
+    private Integer getButtonColor(String str){
+        if(str.equals("color_button1"))
+            return R.id.color_button1;
+        else if(str.equals("color_button2"))
+            return R.id.color_button2;
+        else if(str.equals("color_button3"))
+            return R.id.color_button3;
+        else if(str.equals("color_button4"))
+            return R.id.color_button4;
+        else if(str.equals("color_button5"))
+            return R.id.color_button5;
+        else if(str.equals("color_button6"))
+            return R.id.color_button6;
+        else if(str.equals("color_button7"))
+            return R.id.color_button7;
+        else if(str.equals("color_button8"))
+            return R.id.color_button8;
+        else if(str.equals("color_button9"))
+            return R.id.color_button9;
+        else if(str.equals("color_button10"))
+            return R.id.color_button10;
+        else
+            return R.id.color_button1;
+    }
+
+    public static Integer getButtonColorDrawable(String str){
+        if(str.equals("color_button1"))
+            return R.drawable.color_button1;
+        else if(str.equals("color_button2"))
+            return R.drawable.color_button2;
+        else if(str.equals("color_button3"))
+            return R.drawable.color_button3;
+        else if(str.equals("color_button4"))
+            return R.drawable.color_button4;
+        else if(str.equals("color_button5"))
+            return R.drawable.color_button5;
+        else if(str.equals("color_button6"))
+            return R.drawable.color_button6;
+        else if(str.equals("color_button7"))
+            return R.drawable.color_button7;
+        else if(str.equals("color_button8"))
+            return R.drawable.color_button8;
+        else if(str.equals("color_button9"))
+            return R.drawable.color_button9;
+        else if(str.equals("color_button10"))
+            return R.drawable.color_button10;
+        else
+            return R.drawable.color_button1;
+    }
 }
 
