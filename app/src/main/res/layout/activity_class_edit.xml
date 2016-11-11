@@ -23,7 +23,7 @@
 
     <EditText
         android:id="@+id/info_subject_show2"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView2"
         android:layout_toRightOf="@+id/info_subject2"
@@ -43,7 +43,7 @@
 
     <EditText
         android:id="@+id/info_professor_show2"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/info_subject2"
         android:layout_toRightOf="@+id/info_subject2"
@@ -63,7 +63,7 @@
 
     <EditText
         android:id="@+id/info_classroom_show2"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/info_professor2"
         android:layout_toRightOf="@+id/info_classroom2"
@@ -84,7 +84,6 @@
 
     <EditText
         android:id="@+id/info_memo_show2"
-        android:background="#ffffff"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/info_memo2"

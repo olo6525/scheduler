@@ -46,7 +46,6 @@
     </style>
 
     <style name="class_info_contents">
-        <item name="android:background">#ffffff</item>
         <item name="android:textSize">20dp</item>
         <item name="android:gravity">center_vertical</item>
     </style>
@@ -56,6 +55,26 @@
         <item name="android:textSize">15dp</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="add_style">
+        <item name="android:layout_width">30dp</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:background">@drawable/class_info_btn</item>
+        <item name="android:textSize">10dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="toggle_box_style">
+        <item name="android:layout_width">30dp</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:background">@drawable/add_class_button1</item>
+        <item name="android:textSize">10dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textOff"></item>
+        <item name="android:textOn"></item>
     </style>
 
 </resources>

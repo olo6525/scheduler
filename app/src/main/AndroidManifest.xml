@@ -23,6 +23,8 @@
         <activity android:name="com.capston.googolhkl.scheduler.SendBirdOpenChatActivity"></activity>
         <activity android:name="com.capston.googolhkl.scheduler.dbtestActivity"></activity>
         <activity android:name="com.capston.googolhkl.scheduler.classEditActivity"></activity>
+        <activity android:name="com.capston.googolhkl.scheduler.AddMainActivity"></activity>
+        <activity android:name="com.capston.googolhkl.scheduler.AddClassActivity"></activity>
 
         <service android:name="com.capston.googolhkl.scheduler.fcm.MyFirebaseMessagingService">
             <intent-filter>
