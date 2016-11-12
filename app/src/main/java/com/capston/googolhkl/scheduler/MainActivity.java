@@ -24,8 +24,6 @@ import com.capston.googolhkl.schduler.R;
 public class MainActivity extends AppCompatActivity {
     private ArrayList<ClassInformation> ci = new ArrayList<ClassInformation>();
     private SQLiteHelper dbHelper;
-    private String schoolName = "";
-    int[] id = {R.id.addmon1, R.id.addmon2, R.id.addmon3, R.id.addmon4, R.id.addmon5, R.id.addmon6, R.id.addmon7};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
