@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.capston.googolhkl.schduler.R;
 import java.util.ArrayList;
@@ -36,6 +37,9 @@ public class AddClassActivity extends Activity {
         for(int i=0; i< result.size(); i++){
             ci.add(new ClassInformation(result.get(i)));
         }
+
+        Toast.makeText(this,"학교이름, 수강명, 수강번호는 정확하게 입력해야 채팅 서비스 이용이 가능합니다",Toast.LENGTH_LONG).show();
+
 
         if(!ci.isEmpty()) {
             String schoolName = ci.get(0).getSchoolName();
