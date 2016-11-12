@@ -84,8 +84,8 @@ public class testActivity extends Activity{
             tempCi.add(new ClassInformation(result.get(i)));
         }
         for(int i=0; i< tempCi.size(); i++) {
-            String test = tempCi.get(i).getClassName();
-            if(test.equals(ci.getClassName()))
+            String test = tempCi.get(i).getClassNumber();
+            if(test.equals(ci.getClassNumber()))
                 ci = tempCi.get(i);
         }
 
