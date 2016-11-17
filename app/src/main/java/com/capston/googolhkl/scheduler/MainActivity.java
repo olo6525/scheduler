@@ -2,7 +2,6 @@ package com.capston.googolhkl.scheduler;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.ViewConfiguration;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,8 +23,6 @@ import com.capston.googolhkl.schduler.R;
 public class MainActivity extends AppCompatActivity {
     private ArrayList<ClassInformation> ci = new ArrayList<ClassInformation>();
     private SQLiteHelper dbHelper;
-    private String schoolName = "";
-    int[] id = {R.id.addmon1, R.id.addmon2, R.id.addmon3, R.id.addmon4, R.id.addmon5, R.id.addmon6, R.id.addmon7};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -113,7 +110,6 @@ public class MainActivity extends AppCompatActivity {
             for (int j = 0; j < test.length; j++) {
                 Button button = (Button) findViewById(getDaysID(test[j]));
                 button.setText(ci.get(i).getClassName());
-                Log.d("STATE is = ", ci.get(i).getClassColor() + " !!" + getButtonColor(ci.get(i).getClassColor()) + ci.get(i).getClassName());
                 button.setBackgroundResource(getButtonColorDrawable(ci.get(i).getClassColor()));
             }
         }

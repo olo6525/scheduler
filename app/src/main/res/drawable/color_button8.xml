@@ -1,6 +1,7 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- 평상시 -->
     <item android:state_focused="false" android:state_pressed="false">
+        <bitmap android:src="@drawable/col8"/>
         <shape android:shape="rectangle">
             <solid android:color="#ffe2c6" />  <!--f5d1f0 -->
             <stroke android:color="#c7c7c7" android:width="0.2dp" />
@@ -11,6 +12,7 @@
 
     <!-- 클릭했을 때 -->
     <item android:state_focused="false" android:state_pressed="true">
+        <bitmap android:src="@drawable/col8d"/>
         <shape>
             <solid android:color="#ffc082" />
             <corners android:radius="10dp" />

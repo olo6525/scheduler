@@ -126,8 +126,8 @@
         android:layout_below="@+id/class_add_color"
         android:layout_alignLeft="@+id/class_add_color"
         android:layout_marginLeft="25dp"
-        android:background="@drawable/color_button1"
         style="@style/color_select"
+        android:background="#febfbf"
         android:id="@+id/color_button1" />
 
     <ToggleButton
@@ -135,8 +135,8 @@
         android:layout_below="@+id/class_add_color"
         android:layout_toRightOf="@+id/color_button1"
         android:layout_marginLeft="10dp"
-        android:background="@drawable/color_button2"
         style="@style/color_select"
+        android:background="#fde5c0"
         android:id="@+id/color_button2" />
 
     <ToggleButton
@@ -144,8 +144,8 @@
         android:layout_below="@+id/class_add_color"
         android:layout_toRightOf="@+id/color_button2"
         android:layout_marginLeft="10dp"
-        android:background="@drawable/color_button3"
         style="@style/color_select"
+        android:background="#effdc0"
         android:id="@+id/color_button3" />
 
     <ToggleButton
@@ -153,8 +153,8 @@
         android:layout_below="@+id/class_add_color"
         android:layout_toRightOf="@+id/color_button3"
         android:layout_marginLeft="10dp"
-        android:background="@drawable/color_button4"
         style="@style/color_select"
+        android:background="#cafdc0"
         android:id="@+id/color_button4" />
 
     <ToggleButton
@@ -162,8 +162,8 @@
         android:layout_below="@+id/class_add_color"
         android:layout_toRightOf="@+id/color_button4"
         android:layout_marginLeft="10dp"
-        android:background="@drawable/color_button5"
         style="@style/color_select"
+        android:background="#bcfdd5"
         android:id="@+id/color_button5" />
 
     <ToggleButton
@@ -171,8 +171,8 @@
         android:layout_below="@+id/color_button1"
         android:layout_marginLeft="25dp"
         android:layout_marginTop="10dp"
-        android:background="@drawable/color_button6"
         style="@style/color_select"
+        android:background="#bffbfc"
         android:id="@+id/color_button6" />
 
     <ToggleButton
@@ -181,8 +181,8 @@
         android:layout_toRightOf="@+id/color_button6"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
-        android:background="@drawable/color_button7"
         style="@style/color_select"
+        android:background="#bfd5fc"
         android:id="@+id/color_button7" />
 
     <ToggleButton
@@ -191,8 +191,8 @@
         android:layout_toRightOf="@+id/color_button7"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
-        android:background="@drawable/color_button8"
         style="@style/color_select"
+        android:background="#cabffc"
         android:id="@+id/color_button8" />
 
     <ToggleButton
@@ -201,8 +201,8 @@
         android:layout_toRightOf="@+id/color_button8"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
-        android:background="@drawable/color_button9"
         style="@style/color_select"
+        android:background="#f1bffc"
         android:id="@+id/color_button9" />
 
     <ToggleButton
@@ -211,8 +211,8 @@
         android:layout_toRightOf="@+id/color_button9"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
-        android:background="@drawable/color_button10"
         style="@style/color_select"
+        android:background="#fcbfe3"
         android:id="@+id/color_button10" />
 
 

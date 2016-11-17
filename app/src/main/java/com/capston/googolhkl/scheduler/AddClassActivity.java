@@ -3,10 +3,12 @@ package com.capston.googolhkl.scheduler;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.capston.googolhkl.schduler.R;
 import java.util.ArrayList;
@@ -37,17 +39,191 @@ public class AddClassActivity extends Activity {
             ci.add(new ClassInformation(result.get(i)));
         }
 
+        Toast.makeText(this,"학교이름, 수강명, 수강번호는 정확하게 입력해야 채팅 서비스 이용이 가능합니다",Toast.LENGTH_LONG).show();
+
+
         if(!ci.isEmpty()) {
             String schoolName = ci.get(0).getSchoolName();
             EditText schoolNameText = (EditText) findViewById(R.id.class_add_schoolname_show);
             schoolNameText.setText(schoolName);
         }
 
+
+        /*
+
+        ToggleButton button = (ToggleButton) findViewById(R.id.color_button1);
+        button.setBackgroundResource(R.drawable.col1);
+
+
+        button = (ToggleButton) findViewById(R.id.color_button2);
+        button.setBackgroundResource(R.drawable.col2);
+
+        button = (ToggleButton) findViewById(R.id.color_button3);
+        button.setBackgroundResource(R.drawable.col3);
+
+
+        button = (ToggleButton) findViewById(R.id.color_button4);
+        button.setBackgroundResource(R.drawable.col4);
+        button = (ToggleButton) findViewById(R.id.color_button5);
+        button.setBackgroundResource(R.drawable.col5);
+
+
+        button = (ToggleButton) findViewById(R.id.color_button6);
+        button.setBackgroundResource(R.drawable.col6);
+
+
+        button = (ToggleButton) findViewById(R.id.color_button7);
+        button.setBackgroundResource(R.drawable.col7);
+
+        button = (ToggleButton) findViewById(R.id.color_button8);
+        button.setBackgroundResource(R.drawable.col8);
+
+        button = (ToggleButton) findViewById(R.id.color_button9);
+        button.setBackgroundResource(R.drawable.col9);
+
+        button = (ToggleButton) findViewById(R.id.color_button10);
+        button.setBackgroundResource(R.drawable.col10);
+        */
+
+
+
+        ((ToggleButton)findViewById(R.id.color_button1)).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    buttonView.setBackgroundResource(R.color.col1d);
+                    classColor = "color_button1";
+                    buttonView.setEnabled(false);
+                } else {
+                    buttonView.setBackgroundResource(R.color.col1);
+                    classColor = "color_button1";
+                }
+            }
+        });
+
+        ((ToggleButton)findViewById(R.id.color_button2)).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    buttonView.setBackgroundResource(R.color.col2d);
+                    classColor = "color_button2";
+                    buttonView.setEnabled(false);
+                } else {
+                    buttonView.setBackgroundResource(R.color.col2);
+                    classColor = "color_button1";
+                }
+            }
+        });
+
+        ((ToggleButton)findViewById(R.id.color_button3)).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    buttonView.setBackgroundResource(R.color.col3d);
+                    classColor = "color_button3";
+                    buttonView.setEnabled(false);
+                } else {
+                    buttonView.setBackgroundResource(R.color.col3);
+                    classColor = "color_button1";
+                }
+            }
+        });
+
+        ((ToggleButton)findViewById(R.id.color_button4)).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    buttonView.setBackgroundResource(R.color.col4d);
+                    classColor = "color_button4";
+                    buttonView.setEnabled(false);
+                } else {
+                    buttonView.setBackgroundResource(R.color.col4);
+                    classColor = "color_button1";
+                }
+            }
+        });
+
+        ((ToggleButton)findViewById(R.id.color_button5)).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    buttonView.setBackgroundResource(R.color.col5d);
+                    classColor = "color_button5";
+                    buttonView.setEnabled(false);
+                } else {
+                    buttonView.setBackgroundResource(R.color.col5);
+                    classColor = "color_button1";
+                }
+            }
+        });
+
+        ((ToggleButton)findViewById(R.id.color_button6)).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    buttonView.setBackgroundResource(R.color.col6d);
+                    classColor = "color_button6";
+                    buttonView.setEnabled(false);
+                } else {
+                    buttonView.setBackgroundResource(R.color.col6);
+                    classColor = "color_button1";
+                }
+            }
+        });
+
+        ((ToggleButton)findViewById(R.id.color_button7)).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    buttonView.setBackgroundResource(R.color.col7d);
+                    classColor = "color_button7";
+                    buttonView.setEnabled(false);
+                } else {
+                    buttonView.setBackgroundResource(R.color.col7);
+                    classColor = "color_button1";
+                }
+            }
+        });
+
+        ((ToggleButton)findViewById(R.id.color_button8)).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    buttonView.setBackgroundResource(R.color.col8d);
+                    classColor = "color_button8";
+                    buttonView.setEnabled(false);
+                } else {
+                    buttonView.setBackgroundResource(R.color.col8);
+                    classColor = "color_button1";
+                }
+            }
+        });
+
+        ((ToggleButton)findViewById(R.id.color_button9)).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    buttonView.setBackgroundResource(R.color.col9d);
+                    classColor = "color_button9";
+                    buttonView.setEnabled(false);
+                } else {
+                    buttonView.setBackgroundResource(R.color.col9);
+                    classColor = "color_button1";
+                }
+            }
+        });
+
+        ((ToggleButton)findViewById(R.id.color_button10)).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    buttonView.setBackgroundResource(R.color.col10d);
+                    classColor = "color_button10";
+                    buttonView.setEnabled(false);
+                } else {
+                    buttonView.setBackgroundResource(R.color.col10);
+                    classColor = "color_button1";
+                }
+            }
+        });
+
+        /*
         findViewById(R.id.color_button1).setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 classColor = "color_button1";
             }
         });
+
 
         findViewById(R.id.color_button2).setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
@@ -102,6 +278,7 @@ public class AddClassActivity extends Activity {
                 classColor = "color_button10";
             }
         });
+        */
 
         // 닫기 눌렀을 때
         findViewById(R.id.class_add_cancle).setOnClickListener(new Button.OnClickListener() {
@@ -137,7 +314,6 @@ public class AddClassActivity extends Activity {
                 classRoom = editText1.getText().toString();
 
                 String query = time + ":"+ schoolName + ":" + className + ":" + classNumber + ":" + professor + ":" + classRoom + ":" + classColor + ":" + memo;
-                Log.d("STATE", query);
                 dbHelper.insert(time,schoolName,className,classNumber,professor,classRoom,memo,classColor);
                 finish();
             }

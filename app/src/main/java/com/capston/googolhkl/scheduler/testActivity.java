@@ -95,9 +95,9 @@ public class testActivity extends Activity{
         String mac = info.getMacAddress();
 
         // 핸드폰 번호 얻기
-        TelephonyManager phone = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
-        String phoneNum = phone.getLine1Number();
-        sUserId = phoneNum;
+        //TelephonyManager phone = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
+        //String phoneNum = phone.getLine1Number();
+        sUserId = mac;
 
         // 채팅을 위한 초기화
         SendBird.init(appId, this);
@@ -129,9 +129,28 @@ public class testActivity extends Activity{
         // 삭제 눌렀을 때
         findViewById(R.id.info_delete).setOnClickListener( new Button.OnClickListener() {
             public void onClick(View v) {
-                dbHelper = new SQLiteHelper(getApplicationContext(), "classInfo.db", null,1);
-                dbHelper.delete(ci.getClassNumber());
-                finish();
+                View view = testActivity.this.getLayoutInflater().inflate(R.layout.scheduler_nickname, null);
+
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(testActivity.this);
+                builder.setTitle("과목 삭제")
+                        .setMessage("정말로 삭제할까요?")
+                        .setCancelable(false)
+                        .setPositiveButton("삭제", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(final DialogInterface dialog, final int which) {
+                                dbHelper = new SQLiteHelper(getApplicationContext(), "classInfo.db", null,1);
+                                dbHelper.delete(ci.getClassName());
+                                finish();
+                            }
+                        })
+                        .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                            }
+                        });
+                AlertDialog dialog = builder.create();    // 알림창 객체 생성
+                dialog.show();
             }
         });
 

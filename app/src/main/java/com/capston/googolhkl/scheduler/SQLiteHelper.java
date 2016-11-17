@@ -47,9 +47,9 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void delete(String classNumber) {
+    public void delete(String className) {
         SQLiteDatabase db = getWritableDatabase();
-        String query = "DELETE FROM CLASSINFO WHERE classNumber='" + classNumber + "';";
+        String query = "DELETE FROM CLASSINFO WHERE className='" + className + "';";
         db.execSQL(query);
         db.close();
     }

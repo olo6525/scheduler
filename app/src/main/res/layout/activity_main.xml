@@ -50,12 +50,9 @@ tools:context="com.capston.googolhkl.schduler.com.capston.googolhkl.scheduler.Ma
 
                             <TextView
                                 android:text="시간"
-                                android:layout_width="30dp"
-                                android:layout_height="wrap_content"
-                                android:textSize="20dp"
-                                android:background="#FFE6E6E6"
+
                                 android:id="@+id/textView13"
-                                android:gravity="center_horizontal"
+                                style="@style/day"
                                 android:cursorVisible="false" />
 
                             <TextView
