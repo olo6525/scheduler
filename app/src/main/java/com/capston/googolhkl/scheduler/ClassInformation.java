@@ -4,7 +4,6 @@ package com.capston.googolhkl.scheduler;
  * Created by googolhkl on 2016. 11. 6..
  */
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class ClassInformation implements Serializable{
 
