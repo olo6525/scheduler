@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.telephony.TelephonyManager;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -62,13 +63,15 @@ public class testActivity extends Activity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
-       mainStart();
+
+        mainStart();
     }
 
     @Override
     protected void onResume(){
         super.onResume();
         setContentView(R.layout.activity_test);
+
         mainStart();
     }
 
@@ -176,12 +179,25 @@ public class testActivity extends Activity{
                          .setPositiveButton("입장", new DialogInterface.OnClickListener() {
                              @Override
                              public void onClick(final DialogInterface dialog, final int which) {
-                                 count =0;
+                                 count = 0;
+
 
                                  mNickname = chName.getText().toString();
 
                                  connect();
                                  Helper.hideKeyboard(testActivity.this);
+
+
+                                 try
+                                 {
+                                     Thread.sleep(2000);
+                                 }
+                                 catch(InterruptedException e)
+                                 {
+                                     e.printStackTrace();
+                                 }
+                                 
+
 
                                  OpenChannelListQuery mChannelListQuery = OpenChannel.createOpenChannelListQuery();
                                  mChannelListQuery.next(new OpenChannelListQuery.OpenChannelListQueryResultHandler() {
@@ -195,7 +211,7 @@ public class testActivity extends Activity{
                                          final List<String> keys = new ArrayList<String>();
                                          keys.add(key);
                                          channelMaxSize = channels.size();
-                                         for( i=0; i<channels.size(); i++) {
+                                         for (i = 0; i < channels.size(); i++) {
 
                                              final OpenChannel channel = channels.get(i);
                                              final int j = i;
@@ -207,18 +223,18 @@ public class testActivity extends Activity{
                                                          return;
                                                      }
 
-                                                     String str =  map.get(key);
+                                                     String str = map.get(key);
                                                      // 방이 있을 때 바로 입장
-                                                     if(value.equals(str)) {
+                                                     if (value.equals(str)) {
                                                          Intent intent = new Intent(testActivity.this, SendBirdOpenChatActivity.class);
                                                          intent.putExtra("channel_url", channel.getUrl());
                                                          startActivity(intent);
                                                      }
                                                      // 방이 없을 때 생성하고 입장
-                                                     else{
+                                                     else {
                                                          count++;
 
-                                                         if(count==channelMaxSize){
+                                                         if (count == channelMaxSize) {
                                                              List<User> operators = new ArrayList<>();
                                                              operators.add(SendBird.getCurrentUser());
 
@@ -229,11 +245,11 @@ public class testActivity extends Activity{
                                                                          return;
                                                                      }
                                                                      HashMap<String, String> data = new HashMap<String, String>();
-                                                                     data.put(key,value);
+                                                                     data.put(key, value);
                                                                      openChannel.createMetaData(data, new BaseChannel.MetaDataHandler() {
                                                                          @Override
                                                                          public void onResult(Map<String, String> map, SendBirdException e) {
-                                                                             if(e != null){
+                                                                             if (e != null) {
                                                                                  return;
                                                                              }
 
@@ -253,9 +269,7 @@ public class testActivity extends Activity{
                                      }
 
                                  });
-
                              }
-
                          })
                          .setNegativeButton("취소", new DialogInterface.OnClickListener() {
                              @Override
