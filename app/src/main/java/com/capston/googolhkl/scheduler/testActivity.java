@@ -196,7 +196,7 @@ public class testActivity extends Activity{
                                  {
                                      e.printStackTrace();
                                  }
-                                 
+
 
 
                                  OpenChannelListQuery mChannelListQuery = OpenChannel.createOpenChannelListQuery();
