@@ -27,6 +27,8 @@
         android:layout_below="@+id/class_add_title"
         android:layout_toRightOf="@+id/class_add_schoolname"
         android:text=""
+        android:textSize="15dp"
+        android:gravity="bottom"
         android:layout_alignBottom="@id/class_add_schoolname"
         style="@style/class_info_contents"
         />
@@ -47,6 +49,8 @@
         android:layout_below="@+id/class_add_schoolname"
         android:layout_toRightOf="@+id/class_add_classname"
         android:text=""
+        android:textSize="15dp"
+        android:gravity="bottom"
         android:layout_alignBottom="@id/class_add_classname"
         style="@style/class_info_contents"
         />
@@ -67,6 +71,8 @@
         android:layout_below="@+id/class_add_classname"
         android:layout_toRightOf="@+id/class_add_classnumber"
         android:text=""
+        android:textSize="15dp"
+        android:gravity="bottom"
         android:layout_alignBottom="@id/class_add_classnumber"
         style="@style/class_info_contents"
         />
@@ -87,6 +93,8 @@
         android:layout_below="@+id/class_add_classnumber"
         android:layout_toRightOf="@+id/class_add_professor"
         android:text=""
+        android:textSize="15dp"
+        android:gravity="bottom"
         android:layout_alignBottom="@id/class_add_professor"
         style="@style/class_info_contents"
         />
@@ -107,6 +115,8 @@
         android:layout_below="@+id/class_add_professor"
         android:layout_toRightOf="@+id/class_add_classroom"
         android:text=""
+        android:textSize="15dp"
+        android:gravity="bottom"
         android:layout_alignBottom="@id/class_add_classroom"
         style="@style/class_info_contents"
         />

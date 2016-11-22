@@ -121,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
             if (menuKeyField != null) {
                 menuKeyField.setAccessible( true );
                 menuKeyField.setBoolean(config, false );
+                menuKeyField.
             }
         } catch (Exception ex) {
 
